@@ -11,7 +11,7 @@ import NewestNews from "@/structure/features/home/NewestNews";
 import MostVisited from "@/structure/features/home/MostVisited";
 import Sidebar from "@/components/partials/sidebar";
 import WidgetSocial from "@/structure/organism/WidgetSocial";
-import NewestComments from "@/structure/features/home/newestComments";
+import NewestComments from "@/structure/features/home/NewestComments";
 import Tags from "@/structure/organism/Tags";
 import Categories from "@/structure/organism/Categories";
 import HeaderIndexPosts from "@/structure/features/home/HeaderIndexPosts";
