@@ -12,7 +12,7 @@ const Category = async ({ params: { slug } }) => {
   const [categoryPosts, categories, tags] = await Promise.all([
     service
       .getPostsData({
-        include: "media,categories",
+        include: "categories",
         "f[categories.id]": slug[0],
       })
       .then((v) => v),
@@ -23,6 +23,7 @@ const Category = async ({ params: { slug } }) => {
       .then((v) => v),
     service.getTagsData().then((v) => v),
   ]);
+  console.log(categoryPosts , 'categoryPosts');
   return (
     <>
       <div id="top-bar" className="top-bar">
