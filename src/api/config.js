@@ -13,14 +13,14 @@ export const Api = {
     tag: {
       index: "tags",
     },
-    course:{
-      index:'courses'
+    course: {
+      index: "courses",
     },
-    comments:{
-      index:'comments'
+    comments: {
+      index: "comments",
     },
-    settings:{
-      
-    }
+    settings: {
+      index: "settings",
+    },
   },
 };

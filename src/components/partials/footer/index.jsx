@@ -1,3 +1,4 @@
+'use client'
 const Footer = () => {
   return (
     <>
@@ -365,7 +366,12 @@ const Footer = () => {
             data-offset-top="10"
             class="back-to-top affix"
           >
-            <button class="btn btn-primary" title="Back to Top">
+            <button class="btn btn-primary" title="Back to Top" onClick={()=>{
+               window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+              });
+            }}>
               <i class="fa fa-angle-up"></i>
             </button>
           </div>

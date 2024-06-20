@@ -19,9 +19,9 @@ class services {
   //       throw new Error();
   //     }
   //   };
-  getCoursesData = async () => {
+  getSettingsData = async () => {
     try {
-      const res = await axios.get(Api.baseUrl + Api.endpoints.course.index, {
+      const res = await axios.get(Api.baseUrl + Api.endpoints.settings.index, {
         headers: {
           "x-dev": "89aGGsd445DSFDF$%569F",
         },

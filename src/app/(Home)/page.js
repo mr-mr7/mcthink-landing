@@ -18,10 +18,10 @@ import HeaderIndexPosts from "@/structure/features/home/HeaderIndexPosts";
 import NewsLetter from "@/structure/organism/NewsLetter";
 
 const Home = async () => {
-  const [newestPosts, mostVisitedPosts, categories, tags, comments] =
+  const [newestPosts, mostVisitedPosts, categories, tags, comments, settings] =
     await Promise.all([
       service
-        .getPostsData({ 
+        .getPostsData({
           include: "categories",
         })
         .then((v) => v),
@@ -38,8 +38,9 @@ const Home = async () => {
         .then((v) => v),
       service.getTagsData().then((v) => v),
       service.getCommentsData().then((v) => v),
+      service.getSettingsData().then((v) => v),
     ]);
-    console.log(newestPosts , 'newestPosts');
+  console.log(settings, "settings");
   return (
     <>
       <div id="top-bar" className="top-bar">
@@ -52,8 +53,17 @@ const Home = async () => {
       <section class="featured-post-area no-padding">
         <div class="container">
           <div class="row">
-            <FeaturedPostArea />
-            <HeaderIndexPosts />
+            <FeaturedPostArea
+              posts={settings?.data?.posts}
+              sliders={
+                JSON.parse(settings?.data?.settings?.post_slider ?? "{}")
+                  ?.sliders
+              }
+            />
+            <HeaderIndexPosts
+              posts={settings?.data?.posts}
+              postSlider={settings?.data?.settings?.post_slider}
+            />
           </div>
         </div>
       </section>
@@ -92,7 +102,7 @@ const Home = async () => {
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
               <div class="sidebar sidebar-right">
-                <NewestComments comments={comments?.data?.slice(0,5) ?? []}/>
+                <NewestComments comments={comments?.data?.slice(0, 5) ?? []} />
                 <NewsLetter />
               </div>
             </div>

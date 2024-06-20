@@ -1,14 +1,22 @@
 "use client";
+import ImageLazy from "@/components/partials/image-lazy";
+import { SlugGenerator } from "@/utility/Functions";
+import { convertDateToPersian } from "@/utility/Moment";
+import Link from "next/link";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const FeaturedPostArea = () => {
+const FeaturedPostArea = ({ sliders, posts }) => {
   const swiperRef = useRef();
-
+  let _sliders = posts.filter((p) => {
+    for (let i = 0; i < sliders.length; i++) {
+      if (p.id == sliders[i]) return p;
+    }
+  });
   return (
     <div class="col-md-7 col-xs-12 pad-r" style={{ position: "relative" }}>
       <Swiper
-        spaceBetween={50}
+        spaceBetween={1}
         slidesPerView={1}
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
@@ -16,85 +24,44 @@ const FeaturedPostArea = () => {
         id="featured-slider"
         className="swipper-featured-slider"
       >
-        <SwiperSlide class="item">
-          <div
-            style={{
-              height: "100%",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <img src="images/news/lifestyle/health5.jpg" alt="" />
-          </div>
-          <div class="featured-post">
-            <div class="post-content">
-              <a class="post-cat" href="#">
-                سلامتی
-              </a>
-              <h2 class="post-title title-extra-large">
-                <a href="single-post1.html">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                  استفاده از
-                </a>
-              </h2>
-              <span class="post-date">16 دی 1396</span>
+        {_sliders?.map((s, i) => (
+          <SwiperSlide class="item">
+            <div
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Link href={`/posts/${s?.id}/${SlugGenerator(s?.title ?? "")}`}>
+                <ImageLazy
+                  src={
+                    s.media?.find((item) => item.title == "main_image")?.[
+                      "original_url"
+                    ]
+                  }
+                  alt={s.title}
+                  size={"sm"}
+                />
+              </Link>
             </div>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide class="item">
-          <div
-            style={{
-              height: "100%",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <img src="images/news/tech/gadget2.jpg" alt="" />
-          </div>
-          <div class="featured-post">
-            <div class="post-content">
-              <a class="post-cat" href="#">
-                ابزار
-              </a>
-              <h2 class="post-title title-extra-large">
-                <a href="single-post1.html">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                  استفاده
-                </a>
-              </h2>
-              <span class="post-date">16 دی 1396</span>
+            <div class="featured-post">
+              <div class="post-content">
+                <h2 class="post-title title-extra-large">
+                  <Link
+                    href={`/posts/${s?.id}/${SlugGenerator(s?.title ?? "")}`}
+                  >
+                    {s.title}
+                  </Link>
+                </h2>
+                <span class="post-date">
+                  {convertDateToPersian(s.created_at)}
+                </span>
+              </div>
             </div>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide class="item">
-          <div
-            style={{
-              height: "100%",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <img src="images/news/lifestyle/travel5.jpg" alt="" />
-          </div>
-          <div class="featured-post">
-            <div class="post-content">
-              <a class="post-cat" href="#">
-                مسافرت
-              </a>
-              <h2 class="post-title title-extra-large">
-                <a href="single-post1.html">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                </a>
-              </h2>
-              <span class="post-date">16 دی 1396</span>
-            </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        ))}
       </Swiper>
       <div className="swiper-button-header">
         <span onClick={() => swiperRef.current.slidePrev()}>
