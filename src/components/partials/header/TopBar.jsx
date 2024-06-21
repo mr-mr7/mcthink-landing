@@ -1,10 +1,16 @@
+import moment from "jalali-moment";
+
 const TopHeader = () => {
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-8 col-sm-8 col-xs-12">
           <div className="ts-date">
-            <i className="fa fa-calendar-check-o"></i>28 آذر 1396
+            <i className="fa fa-calendar-check-o"></i>
+            {moment
+              .from(new Date(), "en", "YYYY-MM-DD")
+              .locale("fa")
+              .format( "jDD MMMM jYYYY")}
           </div>
           <ul className="unstyled top-nav">
             <li>

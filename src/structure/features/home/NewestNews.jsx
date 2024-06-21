@@ -16,9 +16,19 @@ const NewestNews = (props) => {
         <BlockTitle title={"جدید ترین خبر ها"} />
         <Swiper
           spaceBetween={50}
-          slidesPerView={3}
+          slidesPerView={1}
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
+          }}
+          breakpoints={{
+               // when window width is >= 768px
+               640: {
+                slidesPerView: 2,
+              },
+            // when window width is >= 768px
+            768: {
+              slidesPerView: 3,
+            },
           }}
           id="latest-news-slide"
         >

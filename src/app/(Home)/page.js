@@ -15,7 +15,6 @@ import NewestComments from "@/structure/features/home/NewestComments";
 import Tags from "@/structure/organism/Tags";
 import Categories from "@/structure/organism/Categories";
 import HeaderIndexPosts from "@/structure/features/home/HeaderIndexPosts";
-import NewsLetter from "@/structure/organism/NewsLetter";
 
 const Home = async () => {
   const [newestPosts, mostVisitedPosts, categories, tags, comments, settings] =
@@ -80,7 +79,9 @@ const Home = async () => {
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
               <Sidebar>
-                <WidgetSocial />
+                <WidgetSocial
+                  socials={settings?.data?.settings}
+                />
                 <Categories categories={categories?.data.slice(0, 5) ?? []} />
                 <Tags tags={tags?.data ?? []} />
               </Sidebar>
@@ -103,7 +104,6 @@ const Home = async () => {
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
               <div class="sidebar sidebar-right">
                 <NewestComments comments={comments?.data?.slice(0, 5) ?? []} />
-                <NewsLetter />
               </div>
             </div>
           </div>

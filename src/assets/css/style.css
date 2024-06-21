@@ -704,7 +704,9 @@ span.post-comment span {
 	background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.85) 100%);
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.85) 100%);
 }
-
+.post-overaly-style.contentTop:before {
+	display: none;
+}
 .post-overaly-style .post-content {
 	position: absolute;
 	bottom: 0;
@@ -2178,7 +2180,9 @@ ul.navbar-nav > li.mega-dropdown {
 .social-icon li a i.fa-vimeo-square {
 	background: #7FC400;
 }
-
+.social-icon li a i.fa-telegram {
+	background: #7FC400;
+}
 .social-icon li a i.fa-youtube {
 	background: #bb0000;
 }

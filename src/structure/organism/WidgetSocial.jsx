@@ -1,41 +1,42 @@
-const WidgetSocial = () => {
+import BlockTitle from "@/components/ui/BlockTitle";
+
+const WidgetSocial = ({ socials }) => {
   return (
     <div class="widget">
-      <h3 class="block-title">
-        <span>ما را دنبال کنید</span>
-      </h3>
-
+      <BlockTitle title={"شبکه های اجتماعی"} />
       <ul class="social-icon">
-        <li>
-          <a href="#" target="_blank">
-            <i class="fa fa-rss"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#" target="_blank">
-            <i class="fa fa-facebook"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#" target="_blank">
-            <i class="fa fa-twitter"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#" target="_blank">
-            <i class="fa fa-google-plus"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#" target="_blank">
-            <i class="fa fa-vimeo-square"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#" target="_blank">
-            <i class="fa fa-youtube"></i>
-          </a>
-        </li>
+        {[
+          {
+            icon: "instagram",
+            url: socials.instagram,
+          },
+          {
+            icon: "facebook",
+            url: socials.facebook,
+          },
+          {
+            icon: "twitter",
+            url: socials.twitter,
+          },
+          {
+            icon: "google-plus",
+            url: socials.google_plus,
+          },
+          {
+            icon: "telegram",
+            url: socials.telegram,
+          },
+          {
+            icon: "youtube",
+            url: socials.youtube,
+          },
+        ].map((s) => (
+          <li>
+            <a href={s.url} target="_blank">
+              <i class={`fa fa-${s.icon}`}></i>
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   );

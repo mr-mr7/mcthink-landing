@@ -63,14 +63,12 @@ const FeaturedPostArea = ({ sliders, posts }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="swiper-button-header">
-        <span onClick={() => swiperRef.current.slidePrev()}>
+        <span className="swiper-button-header-r" onClick={() => swiperRef.current.slidePrev()}>
           <i class="fa fa-angle-right"></i>
         </span>
-        <span onClick={() => swiperRef.current.slideNext()}>
+        <span className="swiper-button-header-l"  onClick={() => swiperRef.current.slideNext()}>
           <i class="fa fa-angle-left"></i>
         </span>
-      </div>
     </div>
   );
 };

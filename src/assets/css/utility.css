@@ -37,9 +37,7 @@
   background-color: #ec0000;
   border: none;
 }
-.swipper-featured-slider .swiper-wrapper {
-  height: 465px;
-}
+
 .swiper-button-header {
   position: absolute;
   bottom: 0px;
@@ -52,7 +50,28 @@
   top: 0;
   align-items: center;
 }
-.swiper-button-header span {
+.swiper-button-header-r {
+  position: absolute;
+  top: 50%;
+  right:  15px;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #dedede;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 35px;
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+  cursor: pointer;
+}
+.swiper-button-header-l {
+  position: absolute;
+  top: 50%;
+  left:  2px;
+  z-index: 10;
   background-color: rgba(0, 0, 0, 0.5);
   color: #dedede;
   display: inline-flex;
