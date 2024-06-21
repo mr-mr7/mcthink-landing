@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 const MainNav = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -22,15 +23,16 @@ const MainNav = () => {
             toggleMenu ? "in" : ""
           }`}
         >
-          <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="category-style2.html">تکنولوژی</a>
+          <ul class="nav navbar-nav" style={{marginRight:'12px'}}>
+            <li></li>
+            <li>
+              <Link href="/course">دور ها</Link>
             </li>
             <li>
-              <a href="category-style2.html">تکنولوژی</a>
+              <a href="/about-us">درباره ی ما</a>
             </li>
             <li>
-              <a href="category-style2.html">تکنولوژی</a>
+              <a href="/contact-us">تماس با ما</a>
             </li>
           </ul>
         </div>
