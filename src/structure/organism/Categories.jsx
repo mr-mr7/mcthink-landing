@@ -15,7 +15,7 @@ const Categories = ({ categories }) => {
             <li class="clearfix" key={i}>
               <div class="post-block-style post-float clearfix">
                 <div class="post-thumb">
-                  <Link href={`/category/${SlugGenerator(c.title, c.id)}`}>
+                  <Link href={`/category/${c.id}/${SlugGenerator(c.title)}`}>
                     <ImageLazy
                       src={
                         c?.media?.find((item) => item.title == "main_image")?.[

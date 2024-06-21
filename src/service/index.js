@@ -126,6 +126,29 @@ class services {
       console.log(error, "err");
     }
   };
+  sendCommentData = async (body) => {
+    try {
+      const res = await fetch(Api.baseUrl + Api.endpoints.comments.post, {
+        method: "post",
+        cache: "no-store",
+        headers: {
+          "x-dev": "89aGGsd445DSFDF$%569F",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      console.log(res, "res");
+      if (!res.ok) {
+        throw new Error();
+      } else {
+        return res.json();
+      }
+    } catch (error) {
+      console.log(error, "error");
+
+      // throw new Error();
+    }
+  };
 }
 
 export default new services();

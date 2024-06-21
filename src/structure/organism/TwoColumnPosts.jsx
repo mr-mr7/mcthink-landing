@@ -1,11 +1,32 @@
-import ImageLazy from "@/components/partials/image-lazy";
+"use client";
 import BlockTitle from "@/components/ui/BlockTitle";
 import Card from "@/components/ui/Card";
+import service from "@/service";
 import Pagination from "@/structure/organism/Pagination";
 import { SlugGenerator } from "@/utility/Functions";
+import { useEffect, useRef, useState } from "react";
 
-const CategoryPosts = (props) => {
-  const { posts, title } = props;
+const TwoColumnPosts = (props) => {
+  const { posts, title, meta } = props;
+  const [data, setData] = useState(posts);
+  const firstRender = useRef(true);
+  const [currentPage, setCurrentPage] = useState(meta?.current_page || 1);
+ 
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+    } else {
+      service
+        .getPostsData({
+          include: "categories",
+          page: currentPage,
+          per_page: 10,
+        })
+        .then((res) => {
+          setData(res.data);
+        });
+    }
+  }, [currentPage]);
   return (
     <>
       <div class="block category-listing">
@@ -13,7 +34,7 @@ const CategoryPosts = (props) => {
         <div class="row">
           {posts.length > 0 ? (
             <>
-              {posts.map((p, i) => (
+              {data.map((p, i) => (
                 <div class="col-md-6 col-sm-6" key={i}>
                   <Card
                     src={
@@ -38,8 +59,16 @@ const CategoryPosts = (props) => {
           )}
         </div>
       </div>
-      {posts.length > 0 ? <Pagination /> : null}
+      {posts.length > 0 ? (
+        <Pagination
+          totalPage={Math.ceil(meta?.total / meta?.per_page)}
+          currentPage={currentPage}
+          handleChangePage={(page) => {
+            setCurrentPage(page);
+          }}
+        />
+      ) : null}
     </>
   );
 };
-export default CategoryPosts;
+export default TwoColumnPosts;

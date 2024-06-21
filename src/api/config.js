@@ -18,6 +18,7 @@ export const Api = {
     },
     comments: {
       index: "comments",
+      post:'comments'
     },
     settings: {
       index: "settings",

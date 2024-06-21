@@ -4,7 +4,7 @@ import Link from "next/link";
 const CategoryLabelV1 = (props) => {
   const { title, id } = props;
   return (
-    <Link class="post-cat" href={`/category/${SlugGenerator(title, id)}`}>
+    <Link class="post-cat" href={`/category/${id}/${SlugGenerator(title)}`}>
       {title}
     </Link>
   );

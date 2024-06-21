@@ -1,53 +1,40 @@
 import TopBar from "@/components/partials/header/TopBar";
 import MainNav from "@/components/partials/header/MainNav";
 import Footer from "@/components/partials/footer";
-import Sidebar from "@/components/partials/sidebar";
+import service from "@/service";
 import WidgetSocial from "@/structure/organism/WidgetSocial";
 import Categories from "@/structure/organism/Categories";
 import Tags from "@/structure/organism/Tags";
-import PostNavigation from "@/structure/features/posts/[slug]/PostNavigation";
-import AuthorBox from "@/structure/features/posts/[slug]/AuthorBox";
-import RelatedPosts from "@/structure/features/posts/[slug]/RelatedPosts";
-import CommentForm from "@/structure/features/posts/[slug]/CommentForm";
-import ContentHeader from "@/structure/features/posts/[slug]/content/Header";
-import Content from "@/structure/features/posts/[slug]/content";
-import RelatedTags from "@/structure/features/posts/[slug]/content/RelatedTags";
-import Sharing from "@/structure/features/posts/[slug]/content/Sharing";
-import service from "@/service";
-import Comments from "@/structure/features/posts/[slug]/comments/index";
-import { buildTreeArray, flatToTree } from "@/utility/Functions";
+import Sidebar from "@/components/partials/sidebar";
+import TwoColumnPosts from "@/structure/organism/TwoColumnPosts";
 import SearchBar from "@/structure/organism/SearchBar";
 import Link from "next/link";
 import { Api } from "@/api/config";
 
-const Post = async ({ params: { slug } }) => {
-  const [
-    newestPosts,
-    post,
-    relatedPosts,
-    categories,
-    tags,
-    comments,
-    settings,
-  ] = await Promise.all([
+const Category = async ({ params: { search } }) => {
+  const [newestPosts, posts, categories, tags, settings] = await Promise.all([
     service
       .getPostsData({
         include: "categories",
       })
       .then((v) => v),
-    service.getPostData(slug[0]).then((v) => v),
-    service.getRelatedPostsData(slug[0]).then((v) => v),
+    service
+      .getPostsData({
+        include: "categories",
+        title: search.split("_").join(" "),
+        per_page: 10,
+        page: 1,
+      })
+      .then((v) => v),
     service
       .getCategoriesData({
         sort: "-posts_count",
       })
       .then((v) => v),
     service.getTagsData().then((v) => v),
-    service.getCommentsData({
-      "f[post_id]": slug[0],
-    }),
     service.getSettingsData().then((v) => v),
   ]);
+  console.log(settings?.data?.settings, "settings?.data?.settings");
   return (
     <>
       <div id="top-bar" className="top-bar">
@@ -73,21 +60,13 @@ const Post = async ({ params: { slug } }) => {
         <div class="container">
           <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-              <div class="single-post">
-                <ContentHeader post={post?.data} />
-                <div class="post-content-area">
-                  <Content post={post?.data} />
-                  <RelatedTags tags={post?.data?.tags} />
-                  <Sharing />
-                </div>
-              </div>
-              {/* <PostNavigation /> */}
-              <AuthorBox />
-              <RelatedPosts relatedPosts={relatedPosts?.data ?? []} />
-              <Comments
-                comments={comments?.data ? flatToTree(comments?.data) : []}
+              <TwoColumnPosts
+                title={`نتیجه ی سرچ بر اساس عنوان : ${decodeURIComponent(
+                  search
+                )}`}
+                posts={posts?.data ?? []}
+                meta={posts?.meta}
               />
-              <CommentForm post_id={slug[0]} />
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
               <Sidebar>
@@ -106,4 +85,4 @@ const Post = async ({ params: { slug } }) => {
     </>
   );
 };
-export default Post;
+export default Category;

@@ -1,4 +1,5 @@
 import ImageLazy from "@/components/partials/image-lazy";
+import { SlugGenerator } from "@/utility/Functions";
 import { convertDateToPersian } from "@/utility/Moment";
 import Link from "next/link";
 
@@ -12,9 +13,12 @@ const ColCard = (props) => {
         </Link>
       </div>
       {category && (
-        <a class="post-cat" href="#">
+        <Link
+          class="post-cat"
+          href={`/category/${category.id}/${SlugGenerator(category.title)}`}
+        >
           {category?.title}
-        </a>
+        </Link>
       )}
       <div class="post-content">
         <h2 class="post-title title-medium">

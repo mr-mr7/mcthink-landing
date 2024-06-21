@@ -841,7 +841,7 @@ span.post-comment span {
 	position: absolute;
 	top: 20px;
 	right: 20px;
-	z-index: 1;
+	z-index: 100;
 }
 
 .post-block-style .post-content .post-meta {
@@ -3144,6 +3144,8 @@ ul.navbar-nav > li.mega-dropdown {
 .comments-form .comments-btn {
 	margin-top: 20px;
 	font-size: 12px;
+	outline: none;
+	border: none;
 }
 
 /* Sidebar

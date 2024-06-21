@@ -1,9 +1,20 @@
-const CommentForm = () => {
+"use client";
+import service from "@/service";
+import { useState } from "react";
+
+const CommentForm = ({ post_id }) => {
+  const [comment, setComment] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    service.sendCommentData({
+      post_id,
+      comment,
+    });
+  };
   return (
     <div class="comments-form">
       <h3 class="title-normal">دیدگاه خود را بیان کنید</h3>
-
-      <form role="form">
+      <form role="form" onSubmit={handleSubmit}>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
@@ -12,44 +23,8 @@ const CommentForm = () => {
                 id="message"
                 placeholder="دیدگاه شما"
                 required
+                onChange={(e) => setComment(e.target.value)}
               ></textarea>
-            </div>
-          </div>
-
-          <div class="col-md-12">
-            <div class="form-group">
-              <input
-                class="form-control"
-                name="name"
-                id="name"
-                placeholder="نام"
-                type="text"
-                required
-              />
-            </div>
-          </div>
-
-          <div class="col-md-12">
-            <div class="form-group">
-              <input
-                class="form-control"
-                name="email"
-                id="email"
-                placeholder="ایمیل"
-                type="email"
-                required
-              />
-            </div>
-          </div>
-
-          <div class="col-md-12">
-            <div class="form-group">
-              <input
-                class="form-control"
-                placeholder="وب‌سایت"
-                type="text"
-                required
-              />
             </div>
           </div>
         </div>

@@ -1,6 +1,12 @@
 .py-10 {
   padding: 10px 0px;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
+.d-flex {
+  display: flex;
+}
 .latest-news,
 .post-sidebar-slider,
 .more-news,
@@ -53,7 +59,7 @@
 .swiper-button-header-r {
   position: absolute;
   top: 50%;
-  right:  15px;
+  right: 15px;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.5);
   color: #dedede;
@@ -70,7 +76,7 @@
 .swiper-button-header-l {
   position: absolute;
   top: 50%;
-  left:  2px;
+  left: 2px;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.5);
   color: #dedede;
@@ -108,12 +114,21 @@
   -o-transition: 400ms;
   border: none;
 }
-.newest-comment-info{
+.newest-comment-info {
   display: flex;
   flex-direction: column;
   gap: 2;
 }
-.newest-comment-info div{
+.newest-comment-info div {
   display: flex;
   gap: 4;
+}
+.search-box-result {
+  position: absolute;
+  background: white;
+  left: 0;
+  right: 0;
+  top: 15px;
+  padding: 8px;
+  box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
 }

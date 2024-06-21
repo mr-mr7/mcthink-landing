@@ -4,7 +4,6 @@ import Gapper from "@/components/ui/Gapper";
 import FeaturedPostArea from "@/structure/features/home/FeaturedPostArea";
 import MiddlePosts from "@/structure/features/home/MiddlePosts";
 import VideoBlock from "@/structure/features/home/VideoBlock";
-import MoreNews from "@/structure/features/home/MoreNews";
 import Footer from "@/components/partials/footer";
 import service from "@/service";
 import NewestNews from "@/structure/features/home/NewestNews";
@@ -15,38 +14,67 @@ import NewestComments from "@/structure/features/home/NewestComments";
 import Tags from "@/structure/organism/Tags";
 import Categories from "@/structure/organism/Categories";
 import HeaderIndexPosts from "@/structure/features/home/HeaderIndexPosts";
+import SearchBar from "@/structure/organism/SearchBar";
+import { Api } from "@/api/config";
+import Link from "next/link";
+import MostDiscussedPosts from "@/structure/features/home/MostDiscussedPosts";
 
 const Home = async () => {
-  const [newestPosts, mostVisitedPosts, categories, tags, comments, settings] =
-    await Promise.all([
-      service
-        .getPostsData({
-          include: "categories",
-        })
-        .then((v) => v),
-      service
-        .getPostsData({
-          include: "categories",
-          sort: "-view_count",
-        })
-        .then((v) => v),
-      service
-        .getCategoriesData({
-          sort: "posts_count",
-        })
-        .then((v) => v),
-      service.getTagsData().then((v) => v),
-      service.getCommentsData().then((v) => v),
-      service.getSettingsData().then((v) => v),
-    ]);
-  console.log(settings, "settings");
+  const [
+    newestPosts,
+    mostVisitedPosts,
+    mostDiscussedPosts,
+    categories,
+    tags,
+    comments,
+    settings,
+  ] = await Promise.all([
+    service 
+      .getPostsData({
+        include: "categories",
+      })
+      .then((v) => v),
+    service
+      .getPostsData({
+        include: "categories",
+        sort: "-view_count",
+      })
+      .then((v) => v),
+    service
+      .getPostsData({
+        include: "categories",
+        sort: "-comments_count",
+      })
+      .then((v) => v),
+    service
+      .getCategoriesData({
+        sort: "-posts_count",
+      })
+      .then((v) => v),
+    service.getTagsData().then((v) => v),
+    service.getCommentsData().then((v) => v),
+    service.getSettingsData().then((v) => v),
+  ]);
   return (
     <>
       <div id="top-bar" className="top-bar">
-        <TopBar />
+        <TopBar socials={settings?.data?.settings} />
       </div>
       <div class="main-nav clearfix">
-        <MainNav />
+        <div class="container">
+          <div class="row py-10 d-flex">
+            <div>
+              <Link href="/">
+                <img
+                  src={Api.baseImageUrl + settings?.data?.settings?.logo}
+                  alt="logo"
+                />
+              </Link>
+            </div>
+            <MainNav />
+            <SearchBar />
+          </div>
+        </div>
       </div>
       <Gapper />
       <section class="featured-post-area no-padding">
@@ -79,9 +107,7 @@ const Home = async () => {
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
               <Sidebar>
-                <WidgetSocial
-                  socials={settings?.data?.settings}
-                />
+                <WidgetSocial socials={settings?.data?.settings} />
                 <Categories categories={categories?.data.slice(0, 5) ?? []} />
                 <Tags tags={tags?.data ?? []} />
               </Sidebar>
@@ -90,7 +116,10 @@ const Home = async () => {
         </div>
       </section>
       <section class="block-wrapper">
-        <MiddlePosts />
+        <MiddlePosts
+          sections={JSON.parse(settings?.data?.settings?.sections ?? "{")}
+          categories={settings?.data?.categories}
+        />
       </section>
       <section class="block-wrapper video-block">
         <VideoBlock />
@@ -99,7 +128,7 @@ const Home = async () => {
         <div class="container">
           <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-              <MoreNews />
+              <MostDiscussedPosts posts={mostDiscussedPosts?.data ?? []} />
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
               <div class="sidebar sidebar-right">
@@ -109,7 +138,10 @@ const Home = async () => {
           </div>
         </div>
       </section>
-      <Footer />
+      <Footer
+        newestPosts={newestPosts?.data ?? []}
+        categories={categories?.data.slice(0, 5) ?? []}
+      />
     </>
   );
 };

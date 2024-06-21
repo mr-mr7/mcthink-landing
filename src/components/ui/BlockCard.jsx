@@ -1,36 +1,43 @@
-const BlockCard = () => {
+import Link from "next/link";
+import ImageLazy from "../partials/image-lazy";
+import { convertDateToPersian } from "@/utility/Moment";
+import { SlugGenerator } from "@/utility/Functions";
+
+const BlockCard = (props) => {
+  const {
+    src = "",
+    link = "#",
+    category,
+    title = "",
+    date,
+    description = "",
+  } = props;
   return (
     <div class="post-block-style post-float-half clearfix">
       <div class="post-thumb">
-        <a href="single-post1.html">
-          <img
-            class="img-responsive"
-            src="images/news/video/video1.jpg"
-            alt=""
-          />
-        </a>
+        <Link href={link}>
+          <ImageLazy src={src} alt={title} />
+        </Link>
       </div>
-      <a class="post-cat" href="#">
-        ویدئو
-      </a>
+      {category && (
+        <Link
+          class="post-cat"
+          href={`/category/${category.id}/${SlugGenerator(category.title)}`}
+        >
+          {category?.title}
+        </Link>
+      )}
       <div class="post-content">
         <h2 class="post-title">
-          <a href="single-post1.html">
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-            استفاده
-          </a>
+          <Link href={link}>{title}</Link>
         </h2>
         <div class="post-meta">
           <span class="post-author">
             <a href="#">جان اسنو</a>
           </span>
-          <span class="post-date">29 خرداد 1396</span>
+          <span class="post-date">{convertDateToPersian(date)}</span>
         </div>
-        <p>
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
-          از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-          سطرآنچنان که لازم
-        </p>
+        <div dangerouslySetInnerHTML={{ __html: description }}></div>
       </div>
     </div>
   );

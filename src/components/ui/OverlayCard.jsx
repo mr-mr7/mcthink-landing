@@ -1,23 +1,43 @@
-const OverlayCard = () => {
+"use client";
+import { convertDateToPersian } from "@/utility/Moment";
+import ImageLazy from "../partials/image-lazy";
+import Link from "next/link";
+import { SlugGenerator } from "@/utility/Functions";
+
+const OverlayCard = ({ indexPost }) => {
   return (
     <div className="post-overaly-style clearfix">
       <div className="post-thumb">
-        <a href="single-post1.html">
-          <img
-            className="img-responsive"
-            src="images/news/lifestyle/travel1.jpg"
-            alt=""
+        <Link
+          href={`/posts/${indexPost?.id}/${SlugGenerator(
+            indexPost?.title ?? ""
+          )}`}
+        >
+          <ImageLazy
+            alt={indexPost?.title}
+            src={
+              indexPost?.media?.find((item) => item.title == "main_image")?.[
+                "original_url"
+              ]
+            }
+            size={'lg'}
           />
-        </a>
+        </Link>
       </div>
       <div className="post-content">
         <h2 className="post-title">
-          <a href="single-post1.html">
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-          </a>
+          <Link
+            href={`/posts/${indexPost?.id}/${SlugGenerator(
+              indexPost?.title ?? ""
+            )}`}
+          >
+            {indexPost?.title}
+          </Link>
         </h2>
         <div className="post-meta">
-          <span className="post-date">3 فروردین 1396</span>
+          <span className="post-date">
+            {convertDateToPersian(indexPost?.created_at)}
+          </span>
         </div>
       </div>
     </div>

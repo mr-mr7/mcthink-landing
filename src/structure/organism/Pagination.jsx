@@ -1,26 +1,39 @@
-const Pagination = () => {
+const Pagination = (props) => {
+  const { totalPage, currentPage, handleChangePage } = props;
   return (
     <div class="paging">
       <ul class="pagination">
-        <li class="active">
-          <span>1</span>
+        <li
+          onClick={() => {
+            if (currentPage > 1) {
+              handleChangePage(currentPage - 1);
+            }
+          }}
+        >
+          <span className="cursor-pointer">
+            <i class="fa fa-angle-right"></i> قبلی
+          </span>
         </li>
-        <li>
-          <a href="#">2</a>
-        </li>
-        <li>
-          <a href="#">3</a>
-        </li>
-        <li>
-          <a href="#">4</a>
-        </li>
-        <li>
-          <a href="#">
+        {Array.from({ length: totalPage }, (_, i) => i).map((_, i) => (
+          <li
+            class={`${currentPage == i + 1 ? "active" : ""}`}
+            onClick={() => {
+              handleChangePage(i + 1);
+            }}
+          >
+            <span>{i + 1}</span>
+          </li>
+        ))}
+        <li
+          onClick={() => {
+            if (totalPage > currentPage) {
+              handleChangePage(currentPage + 1);
+            }
+          }}
+        >
+          <span className="cursor-pointer">
             بعدی <i class="fa fa-angle-left"></i>
-          </a>
-        </li>
-        <li>
-          <span class="page-numbers">صفحه 1 از 2</span>
+          </span>
         </li>
       </ul>
     </div>

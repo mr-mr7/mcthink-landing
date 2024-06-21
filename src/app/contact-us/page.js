@@ -1,29 +1,73 @@
 import TopBar from "@/components/partials/header/TopBar";
 import MainNav from "@/components/partials/header/MainNav";
 import Footer from "@/components/partials/footer";
-import BlockWrapper from "@/structure/features/contact-us/BlockWrapper";
+import SearchBar from "@/structure/organism/SearchBar";
+import Sidebar from "@/components/partials/sidebar";
+import WidgetSocial from "@/structure/organism/WidgetSocial";
+import Tags from "@/structure/organism/Tags";
+import Categories from "@/structure/organism/Categories";
+import ContactUsDes from "@/structure/features/contact-us";
+import service from "@/service";
+import Link from "next/link";
+import { Api } from "@/api/config";
 
-export default function Home() {
+const ContactUs = async () => {
+  const [newestPosts, categories, tags, settings] = await Promise.all([
+    service
+      .getPostsData({
+        include: "categories",
+      })
+      .then((v) => v),
+    service
+      .getCategoriesData({
+        sort: "-posts_count",
+      })
+      .then((v) => v),
+    service.getTagsData().then((v) => v),
+    service.getSettingsData().then((v) => v),
+  ]);
   return (
     <>
-      <TopBar />
-      <MainNav />
-      <div class="page-title">
+      <div id="top-bar" className="top-bar">
+        <TopBar socials={settings?.data?.settings} />
+      </div>
+      <div class="main-nav clearfix">
         <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <ol class="breadcrumb">
-                <li>
-                  <a href="#">خانه</a>
-                </li>
-                <li>تماس با ما</li>
-              </ol>
+          <div class="row py-10 d-flex">
+            <div>
+              <Link href="/">
+                <img
+                  src={Api.baseImageUrl + settings?.data?.settings?.logo}
+                  alt="logo"
+                />
+              </Link>
             </div>
+            <MainNav />
+            <SearchBar />
           </div>
         </div>
       </div>
-      <BlockWrapper />
-      <Footer />
+      <section class="block-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+              <ContactUsDes text={settings?.data?.settings?.contactus_text} />
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+              <Sidebar class="sidebar sidebar-right">
+                <WidgetSocial socials={settings?.data?.settings} />
+                <Categories categories={categories?.data.slice(0, 5) ?? []} />
+                <Tags tags={tags?.data ?? []} />
+              </Sidebar>
+            </div>
+          </div>
+        </div>
+      </section>
+      <Footer
+        newestPosts={newestPosts?.data ?? []}
+        categories={categories?.data.slice(0, 5) ?? []}
+      />
     </>
   );
-}
+};
+export default ContactUs;

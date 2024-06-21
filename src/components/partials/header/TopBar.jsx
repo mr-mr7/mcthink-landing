@@ -1,6 +1,7 @@
 import moment from "jalali-moment";
+import Link from "next/link";
 
-const TopHeader = () => {
+const TopHeader = ({ socials={} }) => {
   return (
     <div className="container">
       <div className="row">
@@ -10,20 +11,14 @@ const TopHeader = () => {
             {moment
               .from(new Date(), "en", "YYYY-MM-DD")
               .locale("fa")
-              .format( "jDD MMMM jYYYY")}
+              .format("jDD MMMM jYYYY")}
           </div>
           <ul className="unstyled top-nav">
             <li>
-              <a href="#">درباره ما</a>
+              <Link href="/about-us">درباره ما</Link>
             </li>
             <li>
-              <a href="#">برای ما بنویسید</a>
-            </li>
-            <li>
-              <a href="#">تبلیغات</a>
-            </li>
-            <li>
-              <a href="#">تماس</a>
+              <Link href="/contact-us">تماس با ما</Link>
             </li>
           </ul>
         </div>
@@ -31,36 +26,38 @@ const TopHeader = () => {
         <div className="col-md-4 col-sm-4 col-xs-12 top-social text-right">
           <ul className="unstyled">
             <li>
-              <a title="Facebook" href="#">
-                <span className="social-icon">
-                  <i className="fa fa-facebook"></i>
-                </span>
-              </a>
-              <a title="Twitter" href="#">
-                <span className="social-icon">
-                  <i className="fa fa-twitter"></i>
-                </span>
-              </a>
-              <a title="Google+" href="#">
-                <span className="social-icon">
-                  <i className="fa fa-google-plus"></i>
-                </span>
-              </a>
-              <a title="Linkdin" href="#">
-                <span className="social-icon">
-                  <i className="fa fa-linkedin"></i>
-                </span>
-              </a>
-              <a title="Rss" href="#">
-                <span className="social-icon">
-                  <i className="fa fa-rss"></i>
-                </span>
-              </a>
-              <a title="Skype" href="#">
-                <span className="social-icon">
-                  <i className="fa fa-skype"></i>
-                </span>
-              </a>
+              {[
+                {
+                  icon: "instagram",
+                  url: socials.instagram,
+                },
+                {
+                  icon: "facebook",
+                  url: socials.facebook,
+                },
+                {
+                  icon: "twitter",
+                  url: socials.twitter,
+                },
+                {
+                  icon: "google-plus",
+                  url: socials.google_plus,
+                },
+                {
+                  icon: "telegram",
+                  url: socials.telegram,
+                },
+                {
+                  icon: "youtube",
+                  url: socials.youtube,
+                },
+              ].map((s) => (
+                <a href={s.url} target="_blank">
+                  <span className="social-icon">
+                    <i className={`fa fa-${s.icon}`}></i>
+                  </span>
+                </a>
+              ))}
             </li>
           </ul>
         </div>

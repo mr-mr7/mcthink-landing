@@ -1,6 +1,6 @@
 import BlockTitle from "@/components/ui/BlockTitle";
 
-const WidgetSocial = ({ socials }) => {
+const WidgetSocial = ({ socials = {} }) => {
   return (
     <div class="widget">
       <BlockTitle title={"شبکه های اجتماعی"} />
@@ -8,27 +8,27 @@ const WidgetSocial = ({ socials }) => {
         {[
           {
             icon: "instagram",
-            url: socials.instagram,
+            url: socials?.instagram,
           },
           {
             icon: "facebook",
-            url: socials.facebook,
+            url: socials?.facebook,
           },
           {
             icon: "twitter",
-            url: socials.twitter,
+            url: socials?.twitter,
           },
           {
             icon: "google-plus",
-            url: socials.google_plus,
+            url: socials?.google_plus,
           },
           {
             icon: "telegram",
-            url: socials.telegram,
+            url: socials?.telegram,
           },
           {
             icon: "youtube",
-            url: socials.youtube,
+            url: socials?.youtube,
           },
         ].map((s) => (
           <li>

@@ -7,11 +7,10 @@ const Card = (props) => {
     src = "",
     title,
     date,
-    category,
     description = "",
     link = "#",
     commentsCount,
-  } = props;
+  } = props; 
 
   return (
     <div class="post-block-style post-grid clearfix">

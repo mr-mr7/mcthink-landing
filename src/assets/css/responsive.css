@@ -751,7 +751,7 @@
 
 	.search-block {
 		width: 220px;
-		top: 56px;
+		/* top: 56px; */
 	}
 
 	.search-block .search-close {
