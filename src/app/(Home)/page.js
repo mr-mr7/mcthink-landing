@@ -29,7 +29,7 @@ const Home = async () => {
     comments,
     settings,
   ] = await Promise.all([
-    service 
+    service
       .getPostsData({
         include: "categories",
       })
@@ -66,7 +66,7 @@ const Home = async () => {
             <div>
               <Link href="/">
                 <img
-                  src={Api.baseImageUrl + settings?.data?.settings?.logo}
+                  src={Api.baseImageUrl + settings?.data?.settings?.header_logo}
                   alt="logo"
                 />
               </Link>
@@ -81,7 +81,7 @@ const Home = async () => {
         <div class="container">
           <div class="row">
             <FeaturedPostArea
-              posts={settings?.data?.posts}
+              posts={settings?.data?.posts ?? []}
               sliders={
                 JSON.parse(settings?.data?.settings?.post_slider ?? "{}")
                   ?.sliders
@@ -117,12 +117,14 @@ const Home = async () => {
       </section>
       <section class="block-wrapper">
         <MiddlePosts
-          sections={JSON.parse(settings?.data?.settings?.sections ?? "{")}
+          sections={JSON.parse(settings?.data?.settings?.sections ?? "{}")}
           categories={settings?.data?.categories}
         />
       </section>
       <section class="block-wrapper video-block">
-        <VideoBlock />
+        <VideoBlock
+          sections={JSON.parse(settings?.data?.settings?.sections ?? "{}")}
+        />
       </section>
       <section class="block-wrapper p-bottom-0">
         <div class="container">

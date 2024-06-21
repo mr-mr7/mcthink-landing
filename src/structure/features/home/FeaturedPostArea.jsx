@@ -8,11 +8,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 const FeaturedPostArea = ({ sliders, posts }) => {
   const swiperRef = useRef();
+
   let _sliders = posts.filter((p) => {
     for (let i = 0; i < sliders.length; i++) {
       if (p.id == sliders[i]) return p;
     }
   });
+
   return (
     <div class="col-md-7 col-xs-12 pad-r" style={{ position: "relative" }}>
       <Swiper
@@ -63,12 +65,18 @@ const FeaturedPostArea = ({ sliders, posts }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-        <span className="swiper-button-header-r" onClick={() => swiperRef.current.slidePrev()}>
-          <i class="fa fa-angle-right"></i>
-        </span>
-        <span className="swiper-button-header-l"  onClick={() => swiperRef.current.slideNext()}>
-          <i class="fa fa-angle-left"></i>
-        </span>
+      <span
+        className="swiper-button-header-r"
+        onClick={() => swiperRef.current.slidePrev()}
+      >
+        <i class="fa fa-angle-right"></i>
+      </span>
+      <span
+        className="swiper-button-header-l"
+        onClick={() => swiperRef.current.slideNext()}
+      >
+        <i class="fa fa-angle-left"></i>
+      </span>
     </div>
   );
 };

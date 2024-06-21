@@ -1,13 +1,13 @@
 "use client";
-import { useRef } from "react";
+import {useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import BlockTitle from "@/components/ui/BlockTitle";
 import { SlugGenerator } from "@/utility/Functions";
 import ColCard from "@/components/ui/ColCard";
 
 const RelatedPosts = ({ relatedPosts }) => {
-  console.log(relatedPosts, "relatedPosts");
   const swiperRef = useRef();
+
   return (
     <div class="related-posts block">
       <BlockTitle title={"مطالب مرتبط "} />

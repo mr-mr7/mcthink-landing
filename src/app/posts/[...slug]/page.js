@@ -15,7 +15,7 @@ import RelatedTags from "@/structure/features/posts/[slug]/content/RelatedTags";
 import Sharing from "@/structure/features/posts/[slug]/content/Sharing";
 import service from "@/service";
 import Comments from "@/structure/features/posts/[slug]/comments/index";
-import { buildTreeArray, flatToTree } from "@/utility/Functions";
+import { flatToTree } from "@/utility/Functions";
 import SearchBar from "@/structure/organism/SearchBar";
 import Link from "next/link";
 import { Api } from "@/api/config";
@@ -82,7 +82,7 @@ const Post = async ({ params: { slug } }) => {
                 </div>
               </div>
               {/* <PostNavigation /> */}
-              <AuthorBox />
+              {/* <AuthorBox /> */}
               <RelatedPosts relatedPosts={relatedPosts?.data ?? []} />
               <Comments
                 comments={comments?.data ? flatToTree(comments?.data) : []}

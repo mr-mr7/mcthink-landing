@@ -32,7 +32,7 @@ const HeaderIndexPosts = ({ postSlider, posts }) => {
                     )?.["original_url"]
                   }
                   alt={_post_slider?.sticky_slider1?.title}
-                  size={"sm"}
+                  size={"lg"}
                 />
               </Link>
             </div>
@@ -69,7 +69,7 @@ const HeaderIndexPosts = ({ postSlider, posts }) => {
                     )?.["original_url"]
                   }
                   alt={_post_slider?.sticky_slider2?.title}
-                  size={"sm"}
+                  size={"md"}
                 />
               </Link>
             </div>
@@ -103,7 +103,7 @@ const HeaderIndexPosts = ({ postSlider, posts }) => {
                     )?.["original_url"]
                   }
                   alt={_post_slider?.sticky_slider3?.title}
-                  size={"sm"}
+                  size={"md"}
                 />
               </Link>
             </div>

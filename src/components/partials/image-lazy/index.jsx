@@ -21,23 +21,12 @@ const ImageLazy = (props) => {
   } = props;
   return (
     <>
-      {src ? (
-        <LazyLoadImage
-          src={isStatic ? src : Api.baseImageUrl + src}
-          className={`img-responsive object-fit-cover ${className}`}
-          effect="blur"
-          {...rest}
-        />
-      ) : (
-        <div
-          style={{
-            maxWidth: "100%",
-            backgroundColor: "lightgrey",
-            ...emptySizes[size],
-            ...style,
-          }}
-        ></div>
-      )}
+      <LazyLoadImage
+        src={isStatic ? src : Api.baseImageUrl + src}
+        className={`img-responsive object-fit-cover ${className}`}
+        effect="blur"
+        {...rest}
+      />
     </>
   );
 };
