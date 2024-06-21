@@ -35,7 +35,7 @@ const Course = async () => {
       <div class="main-nav clearfix">
         <div class="container">
           <div class="row py-10 d-flex">
-            <div>
+          <div className="logo-top">
               <Link href="/">
                 <img
                   src={Api.baseImageUrl + settings?.data?.settings?.logo}
