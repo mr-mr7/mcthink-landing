@@ -1,5 +1,7 @@
 export const Api = {
   baseUrl: "https://mcthink.liara.run/api/v1/",
+  userBaseUrl: "https://mcthink.liara.run/api/v1/user/",
+  baseAuthUrl: "https://mcthink.liara.run/api/v1/",
   baseImageUrl: "https://mcthink.liara.run",
   endpoints: {
     post: {
@@ -18,7 +20,7 @@ export const Api = {
     },
     comments: {
       index: "comments",
-      post:'comments'
+      post: "comments",
     },
     settings: {
       index: "settings",

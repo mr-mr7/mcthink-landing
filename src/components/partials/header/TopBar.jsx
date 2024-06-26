@@ -1,7 +1,20 @@
+"use client";
+import { logoutAction } from "@/store/auth";
 import moment from "jalali-moment";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
 
-const TopHeader = ({ socials={} }) => {
+const styles = {
+  authBtn: {
+    display: "flex",
+    justifyContent: "end",
+    cursor: "pointer",
+  },
+};
+
+const TopHeader = ({ socials = {} }) => {
+  const { checkLoginData: isLogin } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   return (
     <div className="container">
       <div className="row">
@@ -25,40 +38,19 @@ const TopHeader = ({ socials={} }) => {
 
         <div className="col-md-4 col-sm-4 col-xs-12 top-social text-right">
           <ul className="unstyled">
-            <li>
-              {[
-                {
-                  icon: "instagram",
-                  url: socials.instagram,
-                },
-                {
-                  icon: "facebook",
-                  url: socials.facebook,
-                },
-                {
-                  icon: "twitter",
-                  url: socials.twitter,
-                },
-                {
-                  icon: "google-plus",
-                  url: socials.google_plus,
-                },
-                {
-                  icon: "telegram",
-                  url: socials.telegram,
-                },
-                {
-                  icon: "youtube",
-                  url: socials.youtube,
-                },
-              ].map((s) => (
-                <a href={s.url} target="_blank">
-                  <span className="social-icon">
-                    <i className={`fa fa-${s.icon}`}></i>
-                  </span>
-                </a>
-              ))}
-            </li>
+            {isLogin == null || isLogin == false ? (
+              <li style={styles.authBtn}>
+                <Link href={"/login"}>ورود</Link>
+                <a>/</a>
+                <Link href={"/register"}>ثبت نام</Link>
+              </li>
+            ) : (
+              <li style={styles.authBtn}>
+                <a onClick={() => dispatch(logoutAction())}>خروج</a>
+                <a>/</a>
+                <Link href={"/profile"}>پنل کاربری</Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

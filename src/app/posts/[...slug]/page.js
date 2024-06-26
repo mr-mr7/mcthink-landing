@@ -56,7 +56,7 @@ const Post = async ({ params: { slug } }) => {
       <div class="main-nav clearfix">
         <div class="container">
           <div class="row py-10 d-flex">
-          <div className="logo-top">
+            <div className="logo-top">
               <Link href="/">
                 <img
                   src={Api.baseImageUrl + settings?.data?.settings?.logo}
@@ -69,6 +69,7 @@ const Post = async ({ params: { slug } }) => {
           </div>
         </div>
       </div>
+
       <section class="block-wrapper">
         <div class="container">
           <div class="row">

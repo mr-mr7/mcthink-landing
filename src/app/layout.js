@@ -1,5 +1,6 @@
 import "swiper/css";
 import "./globals.css";
+import MainProvider from "@/main";
 
 export const metadata = {
   title: "سایت خبری",
@@ -11,7 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fa">
-      <body className="body-inner">{children}</body>
+      <body className="body-inner">
+        <MainProvider>{children}</MainProvider>
+      </body>
     </html>
   );
 }

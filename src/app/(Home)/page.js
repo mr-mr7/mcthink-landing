@@ -19,7 +19,7 @@ import { Api } from "@/api/config";
 import Link from "next/link";
 import MostDiscussedPosts from "@/structure/features/home/MostDiscussedPosts";
 
-const Home = async () => {
+const Home = async () => { 
   const [
     newestPosts,
     mostVisitedPosts,
@@ -139,10 +139,11 @@ const Home = async () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> 
       <Footer
         newestPosts={newestPosts?.data ?? []}
         categories={categories?.data.slice(0, 5) ?? []}
+        settings={settings?.data?.settings}
       />
     </>
   );

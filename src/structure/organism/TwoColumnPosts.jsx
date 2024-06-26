@@ -11,7 +11,7 @@ const TwoColumnPosts = (props) => {
   const [data, setData] = useState(posts);
   const firstRender = useRef(true);
   const [currentPage, setCurrentPage] = useState(meta?.current_page || 1);
- 
+
   useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
@@ -46,7 +46,7 @@ const TwoColumnPosts = (props) => {
                     date={p?.created_at}
                     category={p?.categories[0]}
                     description={p?.description}
-                    link={`/post/${SlugGenerator(p?.title ?? "", p?.id)}`}
+                    link={`/posts/${p?.id}/${SlugGenerator(p?.title)}`}
                     commentsCount={p?.comments_count}
                   />
                 </div>

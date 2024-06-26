@@ -145,7 +145,7 @@ a:visited {
 }
 
 a {
-	color: #ec0000;
+	color: #01014b;
 }
 
 
@@ -155,7 +155,7 @@ a:hover {
 }
 
 a.read-more {
-	color: #ec0000;
+	color: #01014b;
 	font-weight: 700;
 }
 
@@ -327,7 +327,7 @@ ul {
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
-	border: 1px solid #ec0000;
+	border: 1px solid #01014b;
 }
 
 textarea.form-control{
@@ -367,7 +367,7 @@ blockquote:before {
 	right: 50%;
 	margin-right: -44px;
 	color: #fff;
-	background: #ec0000;
+	background: #01014b;
 }
 
 cite {
@@ -403,11 +403,11 @@ blockquote.pull-left {
 
 .btn-white.btn-primary {
 	background: #fff;
-	color: #ec0000;
+	color: #01014b;
 }
 
 .btn-primary {
-	background: #ec0000;
+	background: #01014b;
 }
 
 .btn-dark {
@@ -445,7 +445,7 @@ blockquote.pull-left {
 	font-family: FontAwesome;
 	content: "\f137";
 	margin-left: 10px;
-	color: #ec0000;
+	color: #01014b;
 	font-size: 12px;
 	top: 1.5px;
 	position: relative;
@@ -459,7 +459,7 @@ ul.list-arrow li:before {
 	font-family: FontAwesome;
 	content: "\f104";
 	margin-left: 10px;
-	color: #ec0000;
+	color: #01014b;
 	font-size: 16px;
 	top: 2px;
 	position: relative;
@@ -470,7 +470,7 @@ ul.list-check li:before {
 	font-family: FontAwesome;
 	content: "\f00c";
 	margin-left: 10px;
-	color: #ec0000;
+	color: #01014b;
 	font-size: 14px;
 }
 
@@ -542,12 +542,12 @@ a[href^=tel] {
 	font-size: 14px;
 	line-height: 100%;
 	margin: 0 0 40px;
-	border-bottom: 2px solid #1c1c1c;
+	border-bottom: 2px solid #01014b;
 	font-family: "secondary-font", "primary-font", "segoe ui", "tahoma";
 }
 
 .block-title > span {
-	background: #1c1c1c;
+	background: #01014b;
 	color: #fff;
 	height: 30px;
 	line-height: 30px;
@@ -828,7 +828,7 @@ span.post-comment span {
 }
 
 .post-block-style .post-title a:hover {
-	color: #ec0000;
+	color: #01014b;
 }
 
 .post-block-style .post-content p {
@@ -943,24 +943,24 @@ span.post-comment span {
 /*-- Color Red --*/
 
 .color-red .block-title {
-	border-bottom: 2px solid #ec0000;
+	border-bottom: 2px solid #01014b;
 }
 
 .color-red .block-title > span,
 .color-red a.post-cat {
-	background: #ec0000;
+	background: #01014b;
 }
 
 .color-red .post-cat:before {
-	border-top: 8px solid #ec0000;
+	border-top: 8px solid #01014b;
 }
 
 .color-red .block-title > span:after {
-	border-color: #ec0000 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+	border-color: #01014b rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 }
 
 .color-red .owl-carousel.owl-theme .owl-nav > div:hover {
-	background: #ec0000;
+	background: #01014b;
 }
 
 /*-- Color Blue --*/
@@ -1110,7 +1110,7 @@ span.post-comment span {
 }
 
 .trending-title {
-	background: #ec0000;
+	background: #01014b;
 	color: #fff;
 	display: inline-block;
 	font-size: 11px;
@@ -1133,7 +1133,7 @@ span.post-comment span {
 }
 
 .owl-carousel.owl-theme.trending-slide .owl-nav > div {
-	background: #ec0000;
+	background: #01014b;
 	border: 0;
 	color: #fff;
 	line-height: 21px;
@@ -1142,7 +1142,7 @@ span.post-comment span {
 .owl-carousel.owl-theme.trending-slide .owl-nav > div:hover {
 	background: #fff;
 	border: 0;
-	color: #ec0000;
+	color: #01014b;
 }
 
 
@@ -1228,7 +1228,7 @@ span.post-comment span {
 }
 
 .top-nav li a:hover {
-	color: #ec0000;
+	color: #01014b;
 }
 
 
@@ -1276,7 +1276,7 @@ span.post-comment span {
 }
 
 .top-bar-border ul.top-info li i {
-	color: #ec0000;
+	color: #01014b;
 }
 
 
@@ -1378,7 +1378,7 @@ ul.top-info-box > li.nav-search i {
 	-moz-border-radius: 0;
 	border-radius: 0;
 	margin-left: 5px;
-	background: #ec0000;
+	background: #01014b;
 }
 
 .navbar-toggle .icon-bar {
@@ -1427,7 +1427,7 @@ ul.navbar-nav > li > a {
 
 ul.navbar-nav > li:not(:first-child):hover > a:before,
 ul.navbar-nav > li:not(:first-child).active > a:before {
-	border-color: #ec0000;
+	border-color: #005c8d;
 	opacity: 1;
 	-webkit-transform: scale(1) translateZ(0);
 	-moz-transform: scale(1) translateZ(0);
@@ -1562,7 +1562,7 @@ ul.navbar-nav > li.mega-dropdown {
 }
 
 .dropdown-menu-large > li > ul > li.active > a {
-	color: #ec0000;
+	color: #01014b;
 }
 
 .navbar-nav > li > .dropdown-menu > a {
@@ -1589,13 +1589,13 @@ ul.navbar-nav > li.mega-dropdown {
 .dropdown-menu > .active > a:focus,
 .dropdown-menu > .active > .dropdown-menu > .active > a {
 	background: none;
-	color: #ec0000;
+	color: #01014b;
 }
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
 	background: none;
-	color: #ec0000;
+	color: #01014b;
 }
 
 @media (min-width: 992px) {
@@ -1647,7 +1647,7 @@ ul.navbar-nav > li.mega-dropdown {
 
 .main-nav.dark-bg ul.navbar-nav > li.active,
 .main-nav.dark-bg ul.navbar-nav > li:hover {
-	background: #ec0000;
+	background: #01014b;
 }
 
 .main-nav.dark-bg .nav-search i {
@@ -1759,7 +1759,7 @@ ul.navbar-nav > li.mega-dropdown {
 	margin-left: -1px;
 	border: 1px solid #dedede;
 	border-left: 0;
-	color: #ec0000;
+	color: #01014b;
 	cursor: pointer;
 }
 
@@ -1877,7 +1877,7 @@ ul.navbar-nav > li.mega-dropdown {
 }
 
 .owl-theme.owl-carousel .owl-dots .owl-dot.active span {
-	background: #ec0000;
+	background: #01014b;
 }
 
 /* Latest slider */
@@ -1978,7 +1978,7 @@ ul.navbar-nav > li.mega-dropdown {
 }
 
 .featured-slider.owl-theme .owl-nav > div:hover {
-	background: #ec0000;
+	background: #01014b;
 	color: #fff;
 	border: 0;
 }
@@ -2148,7 +2148,7 @@ ul.navbar-nav > li.mega-dropdown {
 }
 
 .social-icon li a i {
-	background: #ec0000;
+	background: #01014b;
 	color: #fff;
 	font-size: 18px;
 	width: 48px;
@@ -2514,7 +2514,7 @@ ul.navbar-nav > li.mega-dropdown {
 }
 
 .twitter-widget ul li .tweet-text a {
-	color: #ec0000;
+	color: #01014b;
 	font-size: 12px;
 }
 
@@ -2600,14 +2600,14 @@ ul.navbar-nav > li.mega-dropdown {
 }
 
 .footer-social li a i:hover {
-	background: #ec0000;
+	background: #01014b;
 }
 
 
 /*-- Copyright --*/
 
 .copyright {
-	background: #ec0000;
+	background: #01014b;
 	color: #fff;
 	padding: 15px 0;
 	position: relative;
@@ -2657,7 +2657,7 @@ ul.navbar-nav > li.mega-dropdown {
 
 #back-to-top .btn.btn-primary:hover {
 	color: #fff;
-	background: #ec0000;
+	background: #01014b;
 }
 
 
@@ -2708,7 +2708,7 @@ ul.navbar-nav > li.mega-dropdown {
 }
 
 .subCategory > li > a:hover {
-	background: #ec0000;
+	background: #01014b;
 	color: #fff;
 	border: 1px solid transparent;
 }
@@ -2799,7 +2799,7 @@ ul.navbar-nav > li.mega-dropdown {
 .pagination > li > span:hover,
 .pagination > li > span:focus {
 	color: #fff;
-	background: #ec0000;
+	background: #01014b;
 	border: 1px solid transparent;
 }
 
@@ -3074,7 +3074,7 @@ ul.navbar-nav > li.mega-dropdown {
 }
 
 .comments-list .comment-reply:hover {
-	color: #ec0000;
+	color: #01014b;
 }
 
 .comments-counter {
@@ -3191,7 +3191,7 @@ ul.navbar-nav > li.mega-dropdown {
 
 .sidebar ul.nav-tabs li.active a,
 .sidebar ul.nav-tabs li:hover a {
-	color: #ec0000;
+	color: #01014b;
 }
 
 .sidebar ul.nav-tabs li {
@@ -3246,7 +3246,7 @@ ul.navbar-nav > li.mega-dropdown {
 }
 
 .sidebar .widget-tags ul > li a:hover {
-	background: #ec0000;
+	background: #01014b;
 	color: #fff;
 	border: 1px solid transparent;
 }

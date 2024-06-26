@@ -1,13 +1,12 @@
 "use client";
-
 import Link from "next/link";
 import ImageLazy from "../image-lazy";
 import { SlugGenerator } from "@/utility/Functions";
 import { convertDateToPersian } from "@/utility/Moment";
 
 const Footer = (props) => {
-  const { newestPosts, categories } = props;
-  console.log(categories, "categories");
+  const { newestPosts, categories, settings } = props;
+  console.log(settings, "settings");
   return (
     <>
       <footer id="footer" class="footer">
@@ -91,10 +90,33 @@ const Footer = (props) => {
                 </ul>
               </div>
 
-              <div class="col-md-2 col-xs-12 footer-widget widget-categories">
+              <div
+                class="col-md-2 col-xs-12 footer-widget widget-categories"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                }}
+              >
                 <Link href="/">
                   <img src="/images/logos/footer-logo.png" alt="" />
                 </Link>
+                <div>
+                  <span>تلفن تماس :</span>
+                  <span>{settings?.phone}</span>
+                </div>
+                <div>
+                  <span> موبایل :</span>
+                  <span>{settings?.mobile}</span>
+                </div>
+                <div>
+                  <span> ایمیل :</span>
+                  <span>{settings?.email}</span>
+                </div>
+                <div>
+                  <span> آدرس :</span>
+                  <span>{settings?.address}</span>
+                </div>
               </div>
             </div>
           </div>

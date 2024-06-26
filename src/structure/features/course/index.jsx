@@ -1,16 +1,13 @@
 "use client";
-import ImageLazy from "@/components/partials/image-lazy";
 import BlockTitle from "@/components/ui/BlockTitle";
 import service from "@/service";
 import Pagination from "@/structure/organism/Pagination";
-import { convertDateToPersian } from "@/utility/Moment";
 import { useEffect, useRef, useState } from "react";
 import CourseCard from "./CourseCard";
 
 const Courses = (props) => {
   const { courses, meta } = props;
   const [data, setData] = useState(courses);
-  console.log(courses, "courses");
   const firstRender = useRef(true);
   const [currentPage, setCurrentPage] = useState(meta?.current_page || 1);
   useEffect(() => {
