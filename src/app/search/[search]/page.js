@@ -14,12 +14,12 @@ import { Api } from "@/api/config";
 const Category = async ({ params: { search } }) => {
   const [newestPosts, posts, categories, tags, settings] = await Promise.all([
     service
-      .getPostsData({
+      .getPageData(Api.endpoints.post.index, {
         include: "categories",
       })
       .then((v) => v),
     service
-      .getPostsData({
+      .getPageData(Api.endpoints.post.index, {
         include: "categories",
         title: search.split("_").join(" "),
         per_page: 10,
@@ -27,14 +27,13 @@ const Category = async ({ params: { search } }) => {
       })
       .then((v) => v),
     service
-      .getCategoriesData({
+      .getPageData(Api.endpoints.category.index, {
         sort: "-posts_count",
       })
       .then((v) => v),
-    service.getTagsData().then((v) => v),
-    service.getSettingsData().then((v) => v),
+    service.getPageData(Api.endpoints.tag.index).then((v) => v),
+    service.getPageData(Api.endpoints.settings.index).then((v) => v),
   ]);
-  console.log(settings?.data?.settings, "settings?.data?.settings");
   return (
     <>
       <div id="top-bar" className="top-bar">
@@ -43,7 +42,7 @@ const Category = async ({ params: { search } }) => {
       <div class="main-nav clearfix">
         <div class="container">
           <div class="row py-10 d-flex">
-          <div className="logo-top">
+            <div className="logo-top">
               <Link href="/">
                 <img
                   src={Api.baseImageUrl + settings?.data?.settings?.logo}
@@ -81,6 +80,7 @@ const Category = async ({ params: { search } }) => {
       <Footer
         newestPosts={newestPosts?.data ?? []}
         categories={categories?.data.slice(0, 5) ?? []}
+        settings={settings?.data?.settings}
       />
     </>
   );

@@ -5,7 +5,7 @@ import Redirecting from "@/components/ui/Redirecting";
 import { postLoginService } from "@/store/auth";
 import { Form, Formik } from "formik";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
 
@@ -16,6 +16,7 @@ const currectMobileNumber = (num) => {
   return num;
 };
 const Login = () => {
+  const [passIcon, setPassIcon] = useState(true);
   const initialData = {
     password: "",
     mobile: "",
@@ -64,18 +65,35 @@ const Login = () => {
                           <TextInputField
                             name="mobile"
                             label={"موبایل"}
-                            type="text"
-                            placeholder={"موبایل"} 
+                            type="number"
+                            placeholder={"موبایل"}
                           />
-                          <TextInputField
-                            name="password"
-                            label={"رمز عبور"}
-                            type="password"
-                            placeholder={"رمز عبور"}
-                          />
-                          <div style={{marginBottom:'10px'}}>
+                          <div
+                            className="w-full"
+                            style={{ position: "relative" }}
+                          >
+                            <TextInputField
+                              name="password"
+                              label={"رمز عبور"}
+                              type={`${passIcon ? "password" : "text"}`}
+                              placeholder={"رمز عبور"}
+                            />
+                            <i
+                              className={`fa cursor-pointer  ${
+                                passIcon ? "fa-eye-slash" : "fa-eye"
+                              } `}
+                              style={{
+                                position: "absolute",
+                                top: "25%",
+                                fontSize: "18px",
+                                left: "15px",
+                              }}
+                              onClick={() => setPassIcon(!passIcon)}
+                            ></i>
+                          </div>
+                          <div style={{ marginBottom: "10px" }}>
                             <span> قبلا ثبت نام نکرده اید ؟ </span>
-                            <Link href={'/register'}>ثبت نام</Link>
+                            <Link href={"/register"}>ثبت نام</Link>
                           </div>
                           {loginLoading ? (
                             <button className="btn-auth">

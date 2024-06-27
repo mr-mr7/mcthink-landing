@@ -53,7 +53,9 @@ const Articles = () => {
                   placeholder={"عنوان"}
                 />
               </div>
-              <div className="col-sm-3">
+              <div className="col-sm-3" style={{
+                marginBottom:'8px'
+              }}>
                 <Upload setFieldValue={setFieldValue} />
               </div>
               <div className="col-sm-3">

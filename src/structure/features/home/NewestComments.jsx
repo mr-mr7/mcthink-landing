@@ -1,4 +1,6 @@
+"use client";
 import BlockTitle from "@/components/ui/BlockTitle";
+import TextOverflow from "@/utility/TextOverFlow";
 
 const NewestComments = ({ comments }) => {
   return (
@@ -11,16 +13,20 @@ const NewestComments = ({ comments }) => {
               <div class="post-block-style post-float clearfix">
                 <div class="post-thumb">
                   <a href="single-post1.html">
-                    <i className="fa fa-comment" style={{fontSize:'28px'}}></i>
+                    <i
+                      className="fa fa-comment"
+                      style={{ fontSize: "28px" }}
+                    ></i>
                   </a>
                 </div>
 
                 <div class="post-content">
                   <h2 class="post-title title-small">
-                    <a href="single-post1.html">{c.comment}</a>
+                    <a href="single-post1.html">
+                      <TextOverflow>{c.comment}</TextOverflow>
+                    </a>
                   </h2>
                   <div class="post-meta newest-comment-info">
-              
                     <div className="d-flex">
                       <p>کاربر :</p>
                       <p>{c?.user?.name}</p>

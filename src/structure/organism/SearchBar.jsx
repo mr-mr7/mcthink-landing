@@ -1,9 +1,11 @@
 "use client";
 
+import { Api } from "@/api/config";
 import ImageLazy from "@/components/partials/image-lazy";
 import service from "@/service";
 import { SlugGenerator } from "@/utility/Functions";
 import { convertDateToPersian } from "@/utility/Moment";
+import TextOverflow from "@/utility/TextOverFlow";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -23,7 +25,7 @@ const SearchBar = () => {
     } else {
       setIsLoading(true);
       service
-        .getPostsData({
+        .getPageData(Api.endpoints.post.index, {
           "f[title]": searchText,
         })
         .then((res) => setPosts(res.data))
@@ -58,10 +60,10 @@ const SearchBar = () => {
 
         {showResultBox && (
           <div class="list-post-block search-box-result">
-            <ul class="list-post">
+            <ul class="list-post" style={{ padding: "10px 0px" }}>
               {isLoading ? (
                 <li class="clearfix text-center">
-                  {<BeatLoader color="#ec0000" size={12} />}
+                  {<BeatLoader color="#1e88e5" size={12} />}
                 </li>
               ) : (
                 <>
@@ -88,13 +90,20 @@ const SearchBar = () => {
                               </Link>
                             </div>
                             <div class="post-content">
+                              <span class="post-date">
+                                <TextOverflow number={20}>
+                                  {p.sub_title}
+                                </TextOverflow>
+                              </span>
                               <h2 class="post-title title-small">
                                 <Link
                                   href={`/posts/${p.id}/${SlugGenerator(
                                     p.title
                                   )}`}
                                 >
-                                  {p.title}
+                                  <TextOverflow number={20}>
+                                    {p.title}
+                                  </TextOverflow>
                                 </Link>
                               </h2>
                               <div class="post-meta">

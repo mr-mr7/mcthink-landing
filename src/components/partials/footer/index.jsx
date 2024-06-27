@@ -3,10 +3,10 @@ import Link from "next/link";
 import ImageLazy from "../image-lazy";
 import { SlugGenerator } from "@/utility/Functions";
 import { convertDateToPersian } from "@/utility/Moment";
+import TextOverflow from "@/utility/TextOverFlow";
 
 const Footer = (props) => {
   const { newestPosts, categories, settings } = props;
-  console.log(settings, "settings");
   return (
     <>
       <footer id="footer" class="footer">
@@ -36,13 +36,20 @@ const Footer = (props) => {
                             </Link>
                           </div>
                           <div class="post-content">
-                            <h2 class="post-title title-small">
+                            <span class="post-date">
+                              <TextOverflow number={30}>
+                                {p.sub_title}
+                              </TextOverflow>
+                            </span>
+                            <h2 class="post-title post-title-footer  title-small">
                               <Link
                                 href={`/posts/${p.id}/${SlugGenerator(
                                   p.title
                                 )}`}
                               >
-                                {p.title}
+                                <TextOverflow number={30}>
+                                  {p.title}
+                                </TextOverflow>
                               </Link>
                             </h2>
                             <div class="post-meta">
@@ -57,7 +64,6 @@ const Footer = (props) => {
                   </ul>
                 </div>
               </div>
-
               <div class="col-md-3 col-xs-12 footer-widget widget-categories">
                 <h3 class="widget-title">موضوعات داغ</h3>
                 <ul>
@@ -101,19 +107,19 @@ const Footer = (props) => {
                 <Link href="/">
                   <img src="/images/logos/footer-logo.png" alt="" />
                 </Link>
-                <div>
+                <div style={{ display: "flex", gap: "6px" }}>
                   <span>تلفن تماس :</span>
                   <span>{settings?.phone}</span>
                 </div>
-                <div>
+                <div style={{ display: "flex", gap: "6px" }}>
                   <span> موبایل :</span>
                   <span>{settings?.mobile}</span>
                 </div>
-                <div>
+                <div style={{ display: "flex", gap: "6px" }}>
                   <span> ایمیل :</span>
                   <span>{settings?.email}</span>
                 </div>
-                <div>
+                <div style={{ display: "flex", gap: "6px" }}>
                   <span> آدرس :</span>
                   <span>{settings?.address}</span>
                 </div>
@@ -128,7 +134,10 @@ const Footer = (props) => {
           <div class="row">
             <div class="col-12">
               <div class="copyright-info text-center">
-                <span>تمامی حقوق برای این وب سایت محفوظ است</span>
+                <span>
+                  تمامی حقوق مادی و معنوی متعلق به موسسه مطبوعاتی بازار پول و
+                  ارز می باشد.
+                </span>
               </div>
             </div>
           </div>

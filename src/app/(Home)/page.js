@@ -19,41 +19,48 @@ import { Api } from "@/api/config";
 import Link from "next/link";
 import MostDiscussedPosts from "@/structure/features/home/MostDiscussedPosts";
 
-const Home = async () => { 
+const Home = async () => {
   const [
     newestPosts,
     mostVisitedPosts,
     mostDiscussedPosts,
+    videosPosts,
     categories,
     tags,
     comments,
     settings,
   ] = await Promise.all([
     service
-      .getPostsData({
+      .getPageData(Api.endpoints.post.index, {
         include: "categories",
       })
       .then((v) => v),
     service
-      .getPostsData({
+      .getPageData(Api.endpoints.post.index, {
         include: "categories",
         sort: "-view_count",
       })
       .then((v) => v),
     service
-      .getPostsData({
+      .getPageData(Api.endpoints.post.index, {
         include: "categories",
         sort: "-comments_count",
       })
       .then((v) => v),
     service
-      .getCategoriesData({
+      .getPageData(Api.endpoints.post.index, {
+        include: "categories",
+        "f[has_video]": 1,
+      })
+      .then((v) => v),
+    service
+      .getPageData(Api.endpoints.category.index, {
         sort: "-posts_count",
       })
       .then((v) => v),
-    service.getTagsData().then((v) => v),
-    service.getCommentsData().then((v) => v),
-    service.getSettingsData().then((v) => v),
+    service.getPageData(Api.endpoints.tag.index).then((v) => v),
+    service.getPageData(Api.endpoints.comments.index).then((v) => v),
+    service.getPageData(Api.endpoints.settings.index).then((v) => v),
   ]);
   return (
     <>
@@ -121,11 +128,11 @@ const Home = async () => {
           categories={settings?.data?.categories}
         />
       </section>
-      <section class="block-wrapper video-block">
-        <VideoBlock
-          sections={JSON.parse(settings?.data?.settings?.sections ?? "{}")}
-        />
-      </section>
+      {videosPosts?.data?.length > 0 ? (
+        <section class="block-wrapper video-block">
+          <VideoBlock posts={videosPosts?.data} />
+        </section>
+      ) : null}
       <section class="block-wrapper p-bottom-0">
         <div class="container">
           <div class="row">
@@ -139,7 +146,7 @@ const Home = async () => {
             </div>
           </div>
         </div>
-      </section> 
+      </section>
       <Footer
         newestPosts={newestPosts?.data ?? []}
         categories={categories?.data.slice(0, 5) ?? []}

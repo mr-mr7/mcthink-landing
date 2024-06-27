@@ -1,5 +1,6 @@
 import ImageLazy from "@/components/partials/image-lazy";
 import { SlugGenerator } from "@/utility/Functions";
+import { convertDateToPersian } from "@/utility/Moment";
 import Link from "next/link";
 
 const HeaderIndexPosts = ({ postSlider, posts }) => {
@@ -37,6 +38,9 @@ const HeaderIndexPosts = ({ postSlider, posts }) => {
               </Link>
             </div>
             <div class="post-content">
+              <span class="post-date">
+                {_post_slider?.sticky_slider1?.sub_title}
+              </span>
               <h2 class="post-title title-large">
                 <Link
                   href={`/posts/${
@@ -49,7 +53,7 @@ const HeaderIndexPosts = ({ postSlider, posts }) => {
                 </Link>
               </h2>
               <span class="post-date">
-                {_post_slider?.sticky_slider1?.sub_title}
+                {convertDateToPersian(_post_slider?.sticky_slider1?.created_at)}
               </span>
             </div>
           </div>
@@ -74,7 +78,10 @@ const HeaderIndexPosts = ({ postSlider, posts }) => {
               </Link>
             </div>
             <div class="post-content">
-              <h2 class="post-title title-medium">
+              {/* <span class="post-date">
+                {_post_slider?.sticky_slider2?.sub_title}
+              </span> */}
+              <h2 class="post-title title-small">
                 <Link
                   href={`/posts/${
                     _post_slider?.sticky_slider2?.id
@@ -85,6 +92,9 @@ const HeaderIndexPosts = ({ postSlider, posts }) => {
                   {_post_slider?.sticky_slider2?.title}
                 </Link>
               </h2>
+              <span class="post-date">
+                {convertDateToPersian(_post_slider?.sticky_slider2?.created_at)}
+              </span>
             </div>
           </div>
         </div>
@@ -108,7 +118,10 @@ const HeaderIndexPosts = ({ postSlider, posts }) => {
               </Link>
             </div>
             <div class="post-content">
-              <h2 class="post-title title-medium">
+              {/* <span class="post-date">
+              {_post_slider?.sticky_slider3?.sub_title}
+            </span> */}
+              <h2 class="post-title title-small">
                 <Link
                   href={`/posts/${
                     _post_slider?.sticky_slider3?.id
@@ -119,6 +132,9 @@ const HeaderIndexPosts = ({ postSlider, posts }) => {
                   {_post_slider?.sticky_slider3?.title}{" "}
                 </Link>
               </h2>
+              <span class="post-date">
+                {convertDateToPersian(_post_slider?.sticky_slider3?.created_at)}
+              </span>
             </div>
           </div>
         </div>

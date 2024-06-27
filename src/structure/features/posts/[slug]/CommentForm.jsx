@@ -1,4 +1,5 @@
 "use client";
+import Alert from "@/components/ui/Alert";
 import { postCommentService } from "@/store/commnts";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,7 +39,7 @@ const CommentForm = ({ post_id }) => {
             <div class="clearfix">
               {commentLoading ? (
                 <button class="comments-btn btn btn-primary">
-                  {<BeatLoader color="#fff" size={10}/>}
+                  {<BeatLoader color="#fff" size={10} />}
                 </button>
               ) : (
                 <button class="comments-btn btn btn-primary" type="submit">
@@ -49,7 +50,7 @@ const CommentForm = ({ post_id }) => {
           </form>
         </>
       ) : (
-        <h3 class="title-normal">برای ارسال دیدگاه وارد شوید</h3>
+        <Alert title="برای ارسال دیدگاه وارد شوید" type="warning" />
       )}
     </div>
   );

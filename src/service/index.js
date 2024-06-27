@@ -1,152 +1,26 @@
 import { Api } from "@/api/config";
-import axios from "axios";
 
 class services {
-  //   getPostData = async () => {
-  //     try {
-  //       const res = await fetch(Api.baseUrl + Api.endpoints.post.index, {
-  //         method: "get",
-  //         cache: "no-store",
-
-  //       });
-  //       if (!res.ok) {
-  //         throw new Error();
-  //       } else {
-  //         return res.json();
-  //       }
-  //     } catch (error) {
-  //         console.log(error , 'err');
-  //       throw new Error();
-  //     }
-  //   };
-  getSettingsData = async () => {
+  getPageData = async (endpoint = "", params = {}) => {
     try {
-      const res = await axios.get(Api.baseUrl + Api.endpoints.settings.index, {
-        headers: {
-          "x-dev": "89aGGsd445DSFDF$%569F",
-        },
-      });
-      return res.data;
-    } catch (error) {
-      console.log(error, "err");
-    }
-  };
-  getCoursesData = async () => {
-    try {
-      const res = await axios.get(Api.baseUrl + Api.endpoints.course.index, {
-        headers: {
-          "x-dev": "89aGGsd445DSFDF$%569F",
-        },
-      });
-      return res.data;
-    } catch (error) {
-      console.log(error, "err");
-    }
-  };
-  getCommentsData = async (params) => {
-    try {
-      const res = await axios.get(Api.baseUrl + Api.endpoints.comments.index, {
-        headers: {
-          "x-dev": "89aGGsd445DSFDF$%569F",
-        },
-        params,
-      });
-      return res.data;
-    } catch (error) {
-      console.log(error, "err");
-    }
-  };
-  getPostData = async (Slug) => {
-    try {
-      const res = await axios.get(
-        Api.baseUrl + Api.endpoints.post.show.replace("{Id}", Slug),
+      const res = await fetch(
+        Api.baseUrl + endpoint + `?${new URLSearchParams(params).toString()}`,
         {
+          method: "get",
+          cache: "no-store",
           headers: {
             "x-dev": "89aGGsd445DSFDF$%569F",
+            "Content-Type": "application/json",
           },
         }
       );
-      return res.data;
-    } catch (error) {
-      console.log(error, "err");
-    }
-  };
-  getRelatedPostsData = async (id) => {
-    try {
-      const res = await axios.get(
-        Api.baseUrl + Api.endpoints.post.related.replace("{Id}", id),
-        {
-          headers: {
-            "x-dev": "89aGGsd445DSFDF$%569F",
-          },
-        }
-      );
-      return res.data;
-    } catch (error) {
-      console.log(error, "err");
-    }
-  };
-  getPostsData = async (params = {}) => {
-    try {
-      const res = await axios.get(Api.baseUrl + Api.endpoints.post.index, {
-        headers: {
-          "x-dev": "89aGGsd445DSFDF$%569F",
-        },
-        params,
-      });
-
-      return res.data;
-    } catch (error) {
-      console.log(error, "err");
-    }
-  };
-  getCategoriesData = async (params = {}) => {
-    try {
-      const res = await axios.get(Api.baseUrl + Api.endpoints.category.index, {
-        headers: {
-          "x-dev": "89aGGsd445DSFDF$%569F",
-        },
-        params,
-      });
-      return res.data;
-    } catch (error) {
-      console.log(error, "err");
-    }
-  };
-  getTagsData = async (params = {}) => {
-    try {
-      const res = await axios.get(Api.baseUrl + Api.endpoints.tag.index, {
-        headers: {
-          "x-dev": "89aGGsd445DSFDF$%569F",
-        },
-        params,
-      });
-      return res.data;
-    } catch (error) {
-      console.log(error, "err");
-    }
-  };
-  sendCommentData = async (body) => {
-    try {
-      const res = await fetch(Api.baseUrl + Api.endpoints.comments.post, {
-        method: "post",
-        cache: "no-store",
-        headers: {
-          "x-dev": "89aGGsd445DSFDF$%569F",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
-      console.log(res, "res");
       if (!res.ok) {
         throw new Error();
       } else {
         return res.json();
       }
     } catch (error) {
-      console.log(error, "error");
-
-      // throw new Error();
+      throw new Error();
     }
   };
 }

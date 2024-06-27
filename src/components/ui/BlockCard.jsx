@@ -2,6 +2,7 @@ import Link from "next/link";
 import ImageLazy from "../partials/image-lazy";
 import { convertDateToPersian } from "@/utility/Moment";
 import { SlugGenerator } from "@/utility/Functions";
+import TextOverflow from "@/utility/TextOverFlow";
 
 const BlockCard = (props) => {
   const {
@@ -11,6 +12,8 @@ const BlockCard = (props) => {
     title = "",
     date,
     description = "",
+    sub_title,
+    user,
   } = props;
   return (
     <div class="post-block-style post-float-half clearfix">
@@ -28,16 +31,20 @@ const BlockCard = (props) => {
         </Link>
       )}
       <div class="post-content">
+        <span class="post-date">
+          <TextOverflow>{sub_title}</TextOverflow>
+        </span>
         <h2 class="post-title">
-          <Link href={link}>{title}</Link>
+          <Link href={link}>
+            <TextOverflow number={150}>{title}</TextOverflow>
+          </Link>
         </h2>
         <div class="post-meta">
           <span class="post-author">
-            <a href="#">جان اسنو</a>
+            <a href="#">{user?.name}</a>
           </span>
           <span class="post-date">{convertDateToPersian(date)}</span>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: description }}></div>
       </div>
     </div>
   );

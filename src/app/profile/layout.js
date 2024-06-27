@@ -1,16 +1,14 @@
 import service from "@/service";
-import "./profile.css";
 import Profile from "@/structure/features/profile";
+import { Api } from "@/api/config";
 
 const ProfileLayout = async ({ children }) => {
   const [settings] = await Promise.all([
-    service.getSettingsData().then((v) => v),
+    service.getPageData(Api.endpoints.settings.index).then((v) => v),
   ]);
   return (
     <>
-      <Profile settings={settings}>
-        {children}
-      </Profile>
+      <Profile settings={settings}>{children}</Profile>
     </>
   );
 };

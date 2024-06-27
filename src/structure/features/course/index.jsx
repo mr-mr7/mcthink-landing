@@ -4,6 +4,9 @@ import service from "@/service";
 import Pagination from "@/structure/organism/Pagination";
 import { useEffect, useRef, useState } from "react";
 import CourseCard from "./CourseCard";
+import Alert from "@/components/ui/Alert";
+import { Api } from "@/api/config";
+import CourseCardv2 from '@/components/ui/CourseCardV2'
 
 const Courses = (props) => {
   const { courses, meta } = props;
@@ -15,7 +18,7 @@ const Courses = (props) => {
       firstRender.current = false;
     } else {
       service
-        .getCoursesData({
+        .getPageData(Api.endpoints.course.index, {
           page: currentPage,
           per_page: 10,
         })
@@ -29,17 +32,18 @@ const Courses = (props) => {
       <div class="block category-listing">
         <BlockTitle title={"دوره ها"} />
         <div class="row">
+        
           {data.length > 0 ? (
             <>
               {data.map((c, i) => (
                 <div class="col-sm-4" key={i}>
-                  <CourseCard course={c} />
+                  <CourseCardv2  course={c}/>
                 </div>
               ))}
             </>
           ) : (
             <div>
-              <span> دوره ایی وجود ندارد</span>
+              <Alert title="دوره ایی برای نمایش وجود ندارد" type="warning" />
             </div>
           )}
         </div>

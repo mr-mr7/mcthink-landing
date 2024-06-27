@@ -34,6 +34,7 @@ const FeaturedPostArea = ({ sliders, posts }) => {
                 width: "100%",
                 display: "flex",
                 justifyContent: "center",
+                margin: "10px 0px",
               }}
             >
               <Link href={`/posts/${s?.id}/${SlugGenerator(s?.title ?? "")}`}>
@@ -50,6 +51,7 @@ const FeaturedPostArea = ({ sliders, posts }) => {
             </div>
             <div class="featured-post">
               <div class="post-content">
+              <span class="post-date">{s?.sub_title}</span>
                 <h2 class="post-title title-extra-large">
                   <Link
                     href={`/posts/${s?.id}/${SlugGenerator(s?.title ?? "")}`}

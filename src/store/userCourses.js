@@ -21,7 +21,6 @@ const getUserCoursesService = createAsyncThunk(
       const res = await httpService.get(
         Api.baseUrl + endpoints.GET_USER_COURSES_POINT
       );
-      console.log(res, "res");
       if (res.status == 200) {
         toast.success(res.data?.message);
         return fulfillWithValue(res.data);

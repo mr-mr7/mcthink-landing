@@ -7,14 +7,12 @@ const TextOverflow = (props) => {
 
   useEffect(() => {
     if (typeof children === "string") {
-      console.log('dsdssss');
       //slice text
       const text = children.toString() ?? ""
       const sliceWords = text ? text?.slice(0, number) : ""
       //set result text in state
       setResultText(`${sliceWords} ${text.length > number ? "..." : ""}`)
     } else {
-      console.log('1');
       setResultText(children)
     }
   }, [children])

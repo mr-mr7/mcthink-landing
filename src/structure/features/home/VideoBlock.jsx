@@ -2,31 +2,14 @@
 
 import ImageLazy from "@/components/partials/image-lazy";
 import service from "@/service";
-import { useEffect, useState } from "react";
+import Video from "@/structure/organism/Video";
+import TextOverflow from "@/utility/TextOverFlow";
+import { useState } from "react";
 
-const getData = async (sections) => {
-  const [section4Posts] = await Promise.all([
-    service
-      .getPostsData({
-        include: "categories",
-        "f[categories.id]": sections?.section4?.category_id ?? null,
-      })
-      .then((v) => v),
-  ]);
-
-  return {
-    section4Posts: section4Posts?.data,
-  };
-};
-const VideoBlock = ({ sections }) => {
-  const [section4Posts, setSection4Posts] = useState([]);
+const VideoBlock = ({ posts }) => {
   const [activeTab, setActiveTab] = useState({});
-  useEffect(() => {
-    getData(sections).then((res) => {
-      setSection4Posts(res?.section4Posts);
-      setActiveTab(res?.section4Posts[0]);
-    });
-  }, []);
+  const [showVideo, setShowVideo] = useState(false);
+
   return (
     <div class="container">
       <div class="row">
@@ -52,7 +35,11 @@ const VideoBlock = ({ sections }) => {
                   </div>
                   <div class="post-content">
                     <h2 class="post-title">
-                      <a href="single-post1.html">{activeTab.title}</a>
+                      <a href="single-post1.html">
+                        <TextOverflow number={70}>
+                          {activeTab.title}
+                        </TextOverflow>
+                      </a>
                     </h2>
                   </div>
                 </div>
@@ -61,7 +48,7 @@ const VideoBlock = ({ sections }) => {
           </div>
           <div class="col-md-5 pad-l-0">
             <ul class="nav nav-tabs">
-              {section4Posts?.slice(0, 3)?.map((post) => (
+              {posts?.slice(0, 3)?.map((post) => (
                 <li class="cursor-pointer">
                   <a
                     class="animated fadeIn"
@@ -69,7 +56,7 @@ const VideoBlock = ({ sections }) => {
                     data-toggle="tab"
                     onClick={() => setActiveTab(post)}
                   >
-                    <div class="post-thumb">
+                    <div class="post-thumb" onClick={() => setShowVideo(true)}>
                       <ImageLazy
                         src={
                           post?.media?.find(
@@ -79,10 +66,13 @@ const VideoBlock = ({ sections }) => {
                         alt={post.title}
                       />
                     </div>
-                    <h3>{post.title}</h3>
+                    <h3 className="post-title">
+                      <TextOverflow number={70}>{post.title}</TextOverflow>
+                    </h3>
                   </a>
                 </li>
               ))}
+              <Video showVideo={showVideo} setShowVideo={setShowVideo} />
             </ul>
           </div>
         </div>

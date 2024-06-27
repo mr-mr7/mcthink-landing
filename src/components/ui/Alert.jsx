@@ -6,16 +6,10 @@ const Alert = ({ type = "info", title = "", body = "" }) => {
         {
           info: (
             <div class="alert alert--info">
-              <i class="fa fa-info-circle fa-2xl icon"></i>
+              {/* <i class="fa fa-info-circle fa-2xl icon"></i> */}
               <div class="content">
                 <div class="title">{title}</div>
-                {body && (
-                  <div class="body">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Minima explicabo ratione ab unde officiis exercitationem
-                    illum nobis magni recusandae.
-                  </div>
-                )}
+                {body && <div class="body">{body}</div>}
               </div>
             </div>
           ),
@@ -47,14 +41,10 @@ const Alert = ({ type = "info", title = "", body = "" }) => {
           ),
           warning: (
             <div class="alert alert--warning">
-              <i class="fa fa-triangle-exclamation fa-2xl icon"></i>
+              {/* <i class="fa-regular fa-circle-exclamation fa-2xl icon"></i> */}
               <div class="content">
-                <div class="title">Here is an info alert title</div>
-                <div class="body">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Minima explicabo ratione ab unde officiis exercitationem illum
-                  nobis magni recusandae.
-                </div>
+                <div class="title">{title}</div>
+                {body && <div class="body">{body}</div>}
               </div>
             </div>
           ),

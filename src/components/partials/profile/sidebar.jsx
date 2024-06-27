@@ -5,9 +5,6 @@ import { useEffect } from "react";
 
 const ProfileSideBar = () => {
   const pathname = usePathname();
-  useEffect(()=>{
-   console.log(pathname , 'pathname');
-  },[pathname])
   return (
     <>
       <div className="panel-sidebar">

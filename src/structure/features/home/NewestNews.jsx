@@ -44,6 +44,8 @@ const NewestNews = (props) => {
                               (item) => item.title == "main_image"
                             )?.["original_url"]
                           }
+                          sub_title={p?.sub_title}
+                          user={p?.user}
                           title={p?.title}
                           date={p?.created_at}
                           category={p?.categories[0]}

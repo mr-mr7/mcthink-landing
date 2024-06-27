@@ -1,4 +1,5 @@
 "use client";
+import { Api } from "@/api/config";
 import BlockTitle from "@/components/ui/BlockTitle";
 import OverlayCard from "@/components/ui/OverlayCard";
 import RowCard from "@/components/ui/RowCard";
@@ -12,19 +13,19 @@ const getCategoryTitle = (categories = [], categoryId) =>
 const getData = async (sections) => {
   const [section1Posts, section2Posts, section3Posts] = await Promise.all([
     service
-      .getPostsData({
+      .getPageData(Api.endpoints.post.index, {
         include: "categories",
         "f[categories.id]": sections?.section1?.category_id ?? null,
       })
       .then((v) => v),
     service
-      .getPostsData({
+      .getPageData(Api.endpoints.post.index, {
         include: "categories",
         "f[categories.id]": sections?.section2?.category_id ?? null,
       })
       .then((v) => v),
     service
-      .getPostsData({
+      .getPageData(Api.endpoints.post.index, {
         include: "categories",
         "f[categories.id]": sections?.section3?.category_id ?? null,
       })
@@ -64,7 +65,7 @@ const MiddlePosts = ({ sections, categories }) => {
               <OverlayCard indexPost={section1Posts[0]} />
               <div class="list-post-block">
                 <ul class="list-post">
-                  {section1Posts?.map((p, i) => (
+                  {section1Posts?.slice(0, 3)?.map((p, i) => (
                     <li class="clearfix" key={i}>
                       <RowCard
                         src={
@@ -72,6 +73,8 @@ const MiddlePosts = ({ sections, categories }) => {
                             (item) => item.title == "main_image"
                           )?.["original_url"]
                         }
+                        sub_title={p?.sub_title}
+                        user={p?.user}
                         title={p?.title}
                         date={p?.created_at}
                         link={`/posts/${p?.id}/${SlugGenerator(
@@ -97,7 +100,7 @@ const MiddlePosts = ({ sections, categories }) => {
               <OverlayCard indexPost={section2Posts[0]} />
               <div class="list-post-block">
                 <ul class="list-post">
-                  {section2Posts?.map((p, i) => (
+                  {section2Posts?.slice(0, 3)?.map((p, i) => (
                     <li class="clearfix" key={i}>
                       <RowCard
                         src={
@@ -105,6 +108,8 @@ const MiddlePosts = ({ sections, categories }) => {
                             (item) => item.title == "main_image"
                           )?.["original_url"]
                         }
+                        sub_title={p?.sub_title}
+                        user={p?.user}
                         title={p?.title}
                         date={p?.created_at}
                         link={`/posts/${p?.id}/${SlugGenerator(
@@ -131,7 +136,7 @@ const MiddlePosts = ({ sections, categories }) => {
               <OverlayCard indexPost={section3Posts[0]} />
               <div class="list-post-block">
                 <ul class="list-post">
-                  {section3Posts?.map((p, i) => (
+                  {section3Posts?.slice(0, 3)?.map((p, i) => (
                     <li class="clearfix" key={i}>
                       <RowCard
                         src={
@@ -139,6 +144,8 @@ const MiddlePosts = ({ sections, categories }) => {
                             (item) => item.title == "main_image"
                           )?.["original_url"]
                         }
+                        sub_title={p?.sub_title}
+                        user={p?.user}
                         title={p?.title}
                         date={p?.created_at}
                         link={`/posts/${p?.id}/${SlugGenerator(

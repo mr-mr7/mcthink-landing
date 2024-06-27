@@ -11,7 +11,6 @@ const MostDiscussedPosts = ({ posts }) => {
   return (
     <div class="more-news block color-default">
       <BlockTitle title={"پر بحث ترین خبر ها"} />
-
       <Swiper
         spaceBetween={50}
         slidesPerView={1}
@@ -31,6 +30,8 @@ const MostDiscussedPosts = ({ posts }) => {
                       "original_url"
                     ]
                   }
+                  sub_title={post?.sub_title}
+                  user={post?.user}
                   title={post?.title}
                   date={post?.created_at}
                   category={post?.categories[0]}

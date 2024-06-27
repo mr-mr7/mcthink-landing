@@ -6,7 +6,6 @@ import { SlugGenerator } from "@/utility/Functions";
 
 const MostVisited = (props) => {
   const { indexPost, mostVisitedPosts } = props;
-  console.log(indexPost, "indexPost");
   return (
     <div className="featured-tab color-blue">
       <BlockTitle title={"پر بازدید ترین خبر ها"} />
@@ -21,6 +20,8 @@ const MostVisited = (props) => {
               }
               title={indexPost?.title}
               date={indexPost?.created_at}
+              sub_title={indexPost?.sub_title}
+              user={indexPost?.user}
               category={indexPost?.categories[0]}
               description={indexPost?.description}
               link={`/posts/${indexPost?.id}/${SlugGenerator(
@@ -41,6 +42,7 @@ const MostVisited = (props) => {
                         "original_url"
                       ]
                     }
+                    sub_title={p?.sub_title}
                     title={p?.title}
                     date={p?.created_at}
                     link={`/posts/${p?.id}/${SlugGenerator(p?.title ?? "")}`}

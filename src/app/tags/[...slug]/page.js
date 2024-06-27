@@ -15,23 +15,23 @@ const TagsPage = async ({ params: { slug } }) => {
   const [newestPosts, tagsPosts, categories, tags, settings] =
     await Promise.all([
       service
-        .getPostsData({
+        .getPageData(Api.endpoints.post.index, {
           include: "categories",
         })
         .then((v) => v),
       service
-        .getPostsData({
-          include: "media,categories",
+        .getPageData(Api.endpoints.post.index, {
+          include: "categories",
           "f[tags.id]": slug[0],
         })
         .then((v) => v),
       service
-        .getCategoriesData({
+        .getPageData(Api.endpoints.category.index, {
           sort: "-posts_count",
         })
         .then((v) => v),
-      service.getTagsData().then((v) => v),
-      service.getSettingsData().then((v) => v),
+      service.getPageData(Api.endpoints.tag.index).then((v) => v),
+      service.getPageData(Api.endpoints.settings.index).then((v) => v),
     ]);
   return (
     <>
@@ -41,7 +41,7 @@ const TagsPage = async ({ params: { slug } }) => {
       <div class="main-nav clearfix">
         <div class="container">
           <div class="row py-10 d-flex">
-          <div className="logo-top">
+            <div className="logo-top">
               <Link href="/">
                 <img
                   src={Api.baseImageUrl + settings?.data?.settings?.logo}
@@ -77,6 +77,7 @@ const TagsPage = async ({ params: { slug } }) => {
       <Footer
         newestPosts={newestPosts?.data ?? []}
         categories={categories?.data.slice(0, 5) ?? []}
+        settings={settings?.data?.settings}
       />
     </>
   );

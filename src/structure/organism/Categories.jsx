@@ -1,8 +1,10 @@
+"use client";
 import ImageLazy from "@/components/partials/image-lazy";
 import BlockTitle from "@/components/ui/BlockTitle";
 import CategoryLabelV1 from "@/components/ui/CategoryLabelV1";
 import { SlugGenerator } from "@/utility/Functions";
 import { convertDateToPersian } from "@/utility/Moment";
+import TextOverflow from "@/utility/TextOverFlow";
 import Link from "next/link";
 
 const Categories = ({ categories }) => {
@@ -21,7 +23,7 @@ const Categories = ({ categories }) => {
                         c?.media?.find((item) => item.title == "main_image")?.[
                           "original_url"
                         ] ?? ""
-                      }
+                      } 
                       alt={c.title}
                       size="sm"
                     />
@@ -31,7 +33,7 @@ const Categories = ({ categories }) => {
                 <div class="post-content">
                   <h2 class="post-title title-small">
                     <Link href={`/category/${c.id}/${SlugGenerator(c.title)}`}>
-                      {c.meta}
+                      <TextOverflow number={50}>{c.meta}</TextOverflow>
                     </Link>
                   </h2>
                   <div class="post-meta">

@@ -22,7 +22,6 @@ const postCourseService = createAsyncThunk(
         Api.userBaseUrl + endpoints.POST_COURSE_BUY_POINT,
         body
       );
-      console.log(res, "res");
       if (res.status == 200) {
         toast.success("فرم پرداخت با موفقیت ساخته شد.");
         return fulfillWithValue(res.data);

@@ -4,14 +4,9 @@ import TextInputField from "@/components/partials/formik/TextInputField";
 import Loading from "@/components/ui/Loading";
 import Redirecting from "@/components/ui/Redirecting";
 import { useTimer } from "@/hooks/useTimer";
-import {
-  postLoginService,
-  postRegisterService,
-  postSendOtpService,
-} from "@/store/auth";
+import { postRegisterService, postSendOtpService } from "@/store/auth";
 import { Form, Formik } from "formik";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BeatLoader } from "react-spinners";
@@ -54,7 +49,6 @@ const Register = () => {
   const [timer, show, setShow] = useTimer(generateTime(sendOtpData?.time));
 
   useEffect(() => {
-    console.log(isLogin, "islogin");
     if (isLogin) {
       window.location = "/";
     }
@@ -149,7 +143,7 @@ const Register = () => {
                               <div className="row w-full">
                                 <div className="col-sm-6 col-12">
                                   <TextInputField
-                                    type="email"
+                                    type="number"
                                     placeholder="شماره دانشجویی"
                                     name="student_card"
                                   />
@@ -185,7 +179,7 @@ const Register = () => {
                             <div className="col-sm-6 col-12">
                               <TextInputField
                                 name="otp"
-                                type="text"
+                                type="number"
                                 placeholder={"کد تایید"}
                                 hasError={false}
                               />

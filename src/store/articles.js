@@ -26,7 +26,6 @@ const getArticlesService = createAsyncThunk(
       const res = await httpService.get(
         Api.userBaseUrl + endpoints.GET_ARTICLES_POINT
       );
-      console.log(res, "res");
       if (res.status == 200) {
         toast.success(res.data?.message);
         return fulfillWithValue(res.data);

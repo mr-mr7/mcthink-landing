@@ -31,22 +31,26 @@ const Post = async ({ params: { slug } }) => {
     settings,
   ] = await Promise.all([
     service
-      .getPostsData({
+      .getPageData(Api.endpoints.post.index, {
         include: "categories",
       })
       .then((v) => v),
-    service.getPostData(slug[0]).then((v) => v),
-    service.getRelatedPostsData(slug[0]).then((v) => v),
     service
-      .getCategoriesData({
+      .getPageData(Api.endpoints.post.show.replace("{Id}", slug[0]))
+      .then((v) => v),
+    service
+      .getPageData(Api.endpoints.post.related.replace("{Id}", slug[0]))
+      .then((v) => v),
+    service
+      .getPageData(Api.endpoints.category.index, {
         sort: "-posts_count",
       })
       .then((v) => v),
-    service.getTagsData().then((v) => v),
-    service.getCommentsData({
+    service.getPageData(Api.endpoints.tag.index).then((v) => v),
+    service.getPageData(Api.endpoints.comments.index, {
       "f[post_id]": slug[0],
     }),
-    service.getSettingsData().then((v) => v),
+    service.getPageData(Api.endpoints.settings.index).then((v) => v),
   ]);
   return (
     <>
@@ -103,6 +107,7 @@ const Post = async ({ params: { slug } }) => {
       <Footer
         newestPosts={newestPosts?.data ?? []}
         categories={categories?.data.slice(0, 5) ?? []}
+        settings={settings?.data?.settings}
       />
     </>
   );

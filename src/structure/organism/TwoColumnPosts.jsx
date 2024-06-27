@@ -1,4 +1,5 @@
 "use client";
+import Alert from "@/components/ui/Alert";
 import BlockTitle from "@/components/ui/BlockTitle";
 import Card from "@/components/ui/Card";
 import service from "@/service";
@@ -17,7 +18,7 @@ const TwoColumnPosts = (props) => {
       firstRender.current = false;
     } else {
       service
-        .getPostsData({
+        .getPageData(Api.endpoints.post.index, {
           include: "categories",
           page: currentPage,
           per_page: 10,
@@ -44,6 +45,8 @@ const TwoColumnPosts = (props) => {
                     }
                     title={p?.title}
                     date={p?.created_at}
+                    user={p?.user}
+                    sub_title={p?.sub_title}
                     category={p?.categories[0]}
                     description={p?.description}
                     link={`/posts/${p?.id}/${SlugGenerator(p?.title)}`}
@@ -53,9 +56,7 @@ const TwoColumnPosts = (props) => {
               ))}
             </>
           ) : (
-            <div>
-              <span> پستی وجود ندارد</span>
-            </div>
+            <Alert title="پستی برای نمایش وجود ندارد" type="warning" />
           )}
         </div>
       </div>
