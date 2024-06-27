@@ -9,7 +9,7 @@ class services {
           method: "get",
           cache: "no-store",
           headers: {
-            "x-dev": "89aGGsd445DSFDF$%569F",
+            // "x-dev": "89aGGsd445DSFDF$%569F",
             "Content-Type": "application/json",
           },
         }
