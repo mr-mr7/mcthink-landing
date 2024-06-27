@@ -9,7 +9,7 @@ class HttpService {
     //request setting
     axios.interceptors.request.use(
       (config) => {
-       config.headers["x-dev"] = "89aGGsd445DSFDF$%569F";
+     //  config.headers["x-dev"] = "89aGGsd445DSFDF$%569F";
         if (cookies.get("token")) {
           config.headers["Authorization"] = `Bearer ${cookies.get("token")}`;
         }
