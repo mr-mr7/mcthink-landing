@@ -26,6 +26,7 @@ const AboutUs = async () => {
     service.getPageData(Api.endpoints.tag.index).then((v) => v),
     service.getPageData(Api.endpoints.settings.index).then((v) => v),
   ]);
+  console.log(newestPosts , 'newestPosts');
   return (
     <>
       <div id="top-bar" className="top-bar">
