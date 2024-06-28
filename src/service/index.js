@@ -1,5 +1,4 @@
 import { Api } from "@/api/config";
-import axios from "axios";
 
 class services {
   getPageData = async (endpoint = "", params = {}) => {
@@ -17,7 +16,7 @@ class services {
         return res.json();
       }
     } catch (error) {
-      throw new Error();
+      throw new Error(); 
     }
   };
   // getPageData = async (endpoint = "", params = {}) => {
