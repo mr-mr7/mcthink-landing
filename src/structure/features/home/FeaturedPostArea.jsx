@@ -1,4 +1,5 @@
 "use client";
+import "swiper/css";
 import ImageLazy from "@/components/partials/image-lazy";
 import { SlugGenerator } from "@/utility/Functions";
 import { convertDateToPersian } from "@/utility/Moment";

@@ -1,4 +1,5 @@
 "use client";
+import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useRef, useState } from "react";
 import ColCard from "@/components/ui/ColCard";

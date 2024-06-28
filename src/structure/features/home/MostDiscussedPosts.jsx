@@ -1,4 +1,5 @@
 "use client";
+import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useRef } from "react";
 import BlockTitle from "@/components/ui/BlockTitle";
