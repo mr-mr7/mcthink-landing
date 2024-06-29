@@ -34,7 +34,7 @@ const SearchBar = () => {
           setShowResultBox(true);
           setIsLoading(false);
         });
-    }
+    } 
   }, [searchText]);
   return (
     <OutsideClickHandler
