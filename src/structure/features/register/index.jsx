@@ -37,6 +37,7 @@ const Register = () => {
     password_confirmation: "",
   };
   const [sentOtp, setSentOtp] = useState(false);
+  const [passIcon, setPassIcon] = useState(true);
 
   const dispatch = useDispatch();
   const {
@@ -116,7 +117,7 @@ const Register = () => {
                           <div className="row w-full">
                             <div className="col-sm-6 col-12">
                               <TextInputField
-                                type="email"
+                                type="text"
                                 placeholder="ایمیل"
                                 name="email"
                               />
@@ -143,14 +144,7 @@ const Register = () => {
                               <div className="row w-full">
                                 <div className="col-sm-6 col-12">
                                   <TextInputField
-                                    type="number"
-                                    placeholder="شماره دانشجویی"
-                                    name="student_card"
-                                  />
-                                </div>
-                                <div className="col-sm-6 col-12">
-                                  <TextInputField
-                                    type="email"
+                                    type="text"
                                     placeholder="رشته ی تحصیلی"
                                     name="field_study"
                                   />
@@ -159,14 +153,32 @@ const Register = () => {
                             </>
                           )}
                           <div className="row w-full">
-                            <div className="col-sm-6 col-12">
+                            <div
+                              className="col-sm-6 col-12"
+                              style={{ position: "relative" }}
+                            >
                               <TextInputField
-                                type="password"
+                                type={`${passIcon ? "password" : "text"}`}
                                 placeholder="رمز عبور"
                                 name="password"
                               />
+                              <i
+                                className={`fa cursor-pointer  ${
+                                  passIcon ? "fa-eye-slash" : "fa-eye"
+                                } `}
+                                style={{
+                                  position: "absolute",
+                                  top: "20%",
+                                  fontSize: "18px",
+                                  left: "22px",
+                                }}
+                                onClick={() => setPassIcon(!passIcon)}
+                              ></i>
                             </div>
-                            <div className="col-sm-6 col-12">
+                            <div
+                              className="col-sm-6 col-12"
+                              style={{ position: "relative" }}
+                            >
                               <TextInputField
                                 type="password"
                                 placeholder="تکرار رمز  عبور"
@@ -234,9 +246,17 @@ const Register = () => {
                               )}
                             </div>
                           </div>
-                          <div style={{ margin: "12px 0px" }}>
+                          <div
+                            style={{
+                              margin: "12px 0px",
+                              display: "flex",
+                              gap: "8px",
+                            }}
+                          >
                             <span> قبلا ثبت نام کرده اید ؟ </span>
                             <Link href={"/login"}>ورود</Link>
+                            <span>/</span>
+                            <Link href={"/"}>خانه</Link>
                           </div>
                           {registerLoading ? (
                             <button className="btn-auth">

@@ -91,9 +91,17 @@ const Login = () => {
                               onClick={() => setPassIcon(!passIcon)}
                             ></i>
                           </div>
-                          <div style={{ marginBottom: "10px" }}>
+                          <div
+                            style={{
+                              marginBottom: "10px",
+                              display: "flex",
+                              gap: "8px",
+                            }}
+                          >
                             <span> قبلا ثبت نام نکرده اید ؟ </span>
                             <Link href={"/register"}>ثبت نام</Link>
+                            <span>/</span>
+                            <Link href={"/"}>خانه</Link>
                           </div>
                           {loginLoading ? (
                             <button className="btn-auth">

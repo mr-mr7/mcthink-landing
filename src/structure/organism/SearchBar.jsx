@@ -48,6 +48,10 @@ const SearchBar = () => {
           class="form-control"
           placeholder="عبارت را وارد نموده و اینتر بزنید"
           onChange={(e) => setSearchText(e.target.value)}
+          onKeyDown={(e) => {
+            if (searchText && e.key === "Enter")
+              window.location = `/search/${SlugGenerator(searchText)}`;
+          }}
         />
         <span
           class="search-icon"

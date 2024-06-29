@@ -1,3 +1,4 @@
+"use client";
 import TopBar from "@/components/partials/header/TopBar";
 import MainNav from "@/components/partials/header/MainNav";
 import Footer from "@/components/partials/footer";
@@ -21,7 +22,7 @@ const Category = async ({ params: { search } }) => {
     service
       .getPageData(Api.endpoints.post.index, {
         include: "categories",
-        title: search.split("_").join(" "),
+        "f[title]": search.split("_").join(" "),
         per_page: 10,
         page: 1,
       })
