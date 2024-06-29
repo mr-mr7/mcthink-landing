@@ -3,7 +3,7 @@ import MainProvider from "@/main";
 import ProgressBar from "@/structure/organism/PrgressBar";
 
 export const metadata = {
-  title: "سایت خبری",
+  title: "سایت خبری" ,
   icons: {
     icon: "/images/favicon.ico",
   },
